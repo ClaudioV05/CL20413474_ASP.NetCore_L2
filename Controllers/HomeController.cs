@@ -1,8 +1,8 @@
-using Employee.Management.Models;
+using Store.Management.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Employee.Management.Controllers
+namespace Store.Management.Controllers
 {
     public class HomeController : Controller
     {
