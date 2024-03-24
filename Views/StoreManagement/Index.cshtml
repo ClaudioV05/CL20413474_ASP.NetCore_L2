@@ -1,81 +1,46 @@
 ﻿@model Store.Management.Models.Category
-@{
-    <script src="/lib/jquery/dist/jquery.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var items = "<option value='0'>Select</option>";
-            $('#SubCategoryID').html(items);
-            $('#ProductID').html(items);
-        });
-    </script>
+<div class="container">
+    @using (Html.BeginForm("Index", "StoreManagement"))
+    {
+        <div class="form-row mt-3">
+            <div class="col-4">
+                <label for="CategoryName" class="floatingInputValue">Category Name</label>
+                @if (Model.ListOfCategory != null && Model.ListOfCategory.Any())
+                {
+                    @Html.DropDownList("CategoryName", (IEnumerable<SelectListItem>)Model.ListOfCategory, new { id = "dpdCategoryName", @class = "form-control", required = "false" })
+                }
+            </div>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#CategoryID').change(function () {
-                var url = '@Url.Content("~/")' + "StoreManagement/GetSubCategory";
-                var ddlsource = "#CategoryID";
-                $.getJSON(url, { CategoryID: $(ddlsource).val() }, function (data) {
-                    var items = '';
-                    $("#SubCategoryID").empty();
-                    $.each(data, function (i, subcategory) {
-                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
-                    });
-                    $('#SubCategoryID').html(items);
-                });
-            });
+            <div class="col-4">
+                <label for="SubCategoryName" class="floatingInputValue">Sub Category Name</label>
+                @if (Model.ListOfSubCategory != null && Model.ListOfSubCategory.Any())
+                {
+                    @Html.DropDownList("SubCategoryName", (IEnumerable<SelectListItem>)Model.ListOfSubCategory, new { id = "dpdSubCategoryName", @class = "form-control", required = "false" })
+                }
+            </div>
 
-            $('#SubCategoryID').change(function () {
-                var url = '@Url.Content("~/")' + "StoreManagement/GetProducts";
-                var ddlsource = "#SubCategoryID";
-                $.getJSON(url, { SubCategoryID: $(ddlsource).val() }, function (data) {
-                    var items = '';
-                    $('#ProductID').empty();
-                    $.each(data, function (i, product) {
-                        items += "<option value='" + product.value + "'>" + product.text + "</option>";
-                    });
-                    $('#ProductID').html(items);
-                });
-            });
-        });
-    </script>
-
-    <form asp-controller="StoreManagement" asp-action="Index" method="post" class="form-horizontal" role="form">
-        <div class="form-group">
-            <div class="row">
-                <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <label asp-for="CategoryName" class="control-label"></label>
-                    <select asp-for="CategoryID"
-                            class="form-control"
-                            asp-items="@(new SelectList(@ViewBag.ListofCategory,"CategoryID", "CategoryName"))"></select>
-                </div>
+            <div class="col-4">
+                <label for="ProductName" class="floatingInputValue">Product Name</label>
+                @if (Model.ListOfProduct != null && Model.ListOfProduct.Any())
+                {
+                    @Html.DropDownList("ProductName", (IEnumerable<SelectListItem>)Model.ListOfProduct, new { id = "dpdProduct", @class = "form-control", required = "false" })
+                }
             </div>
         </div>
-        <div class="form-group">
-            <div class="row">  
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <label class="control-label">SubCategoryName</label>
-                    <select class="form-control" id="SubCategoryID" name="SubCategoryID" asp-for="SubCategoryID"
-                            asp-items="@(new SelectList(string.Empty,"SubCategoryID", "SubCategoryName"))"></select>
-                </div>
+
+        <div class="form-row mt-4 pl-1">
+            <div class="col-2">
+                <button type="button" class="btn btn-primary" id="btnSaveNewItem" name="btnSaveNewItem">
+                    <span id="title-btnSaveNewItem">Save</span>
+                </button>
             </div>
         </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <label class="control-label">ProductName</label>
-                    <select class="form-control" id="ProductID" name="ProductID" asp-for="ProductID"
-                            asp-items="@(new SelectList(string.Empty,"ProductID", "ProductName"))"></select>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                    <input id="Submit1" type="submit" value="submit" />
-                </div>
-            </div>
-        </div>
-    </form>
-}
+    }
+</div>
+
+@Html.Partial("~/Views/Shared/_ModalInformation.cshtml")
+
+<script type="text/javascript">
+
+</script>

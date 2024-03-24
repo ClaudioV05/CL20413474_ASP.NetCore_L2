@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
     $('#dpdCategoryName').change(function () {
-        let urlBase = `StoreManagement/GetSubCategory?categoryID=${$("#dpdCategoryName option:selected").val()}`;
+        //let urlBase = `StoreManagement/GetSubCategory?categoryID=${$("#dpdCategoryName option:selected").val()}`;
+        let urlBase = `StoreManagement/GetSubCategddory?categoryID=${$("#dpdCategoryName option:selected").val()}`;
 
         $.ajax({
             url: urlBase,
@@ -19,8 +20,10 @@
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                modalShow();
-                modalMessageErro("Occurred erro!");
+                let modalInformation = $("#modal-information");
+                modalInformation.modal("show");
+                modalInformation.find("#modal-information-message").text("");
+                modalInformation.find("#modal-information-message").text("Erro");
             }
         });
 

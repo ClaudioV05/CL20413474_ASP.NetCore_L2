@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Store.Management.Models;
-using Microsoft.AspNetCore.Http;
 
 namespace Store.Management.Controllers
 {
@@ -16,16 +15,64 @@ namespace Store.Management.Controllers
 
         public IActionResult Index()
         {
+            Category category1 = new Category();
             List<Category> categorylist = new List<Category>();
+            category1.ListOfCategory = new List<SelectListItem>();
+            category1.ListOfSubCategory = new List<SelectListItem>();
+            category1.ListOfProduct = new List<SelectListItem>();
 
-            // Getting Data from Database Using EntityFrameworkCore.
             categorylist = (from category in _context.Category select category).ToList();
-            // Inserting Select Item in List
-            categorylist.Insert(0, new Category { CategoryID = 0, CategoryName = "Select" });
-            // Assigning categorylist to ViewBag.ListofCategory.
-            ViewBag.ListofCategory = categorylist;
 
-            return View("~/Views/StoreManagement/Index.cshtml");
+            #region Initializer Category.
+            if (categorylist is not null && categorylist.Any())
+            {
+                category1.ListOfCategory.Add(new SelectListItem()
+                {
+                    Value = Convert.ToString("0"),
+                    Text = "Select",
+                    Selected = true
+                });
+
+                for (int i = 0; i < categorylist.Count; i++)
+                {
+                    category1.ListOfCategory.Add(new SelectListItem()
+                    {
+                        Value = categorylist[i]?.CategoryID.ToString(),
+                        Text = categorylist[i]?.CategoryName?.ToString(),
+                        Selected = false
+                    });
+                }
+            }
+            else
+            {
+                category1.ListOfCategory.Add(new SelectListItem()
+                {
+                    Value = Convert.ToString("0"),
+                    Text = "Select",
+                    Selected = true
+                });
+            }
+            #endregion Initializer Category.
+
+            #region Initializer SubCategory.
+            category1.ListOfSubCategory.Add(new SelectListItem()
+            {
+                Value = Convert.ToString("0"),
+                Text = "Select",
+                Selected = true
+            });
+            #endregion Initializer SubCategory.
+
+            #region Initializer ListOfProduct.
+            category1.ListOfProduct.Add(new SelectListItem()
+            {
+                Value = Convert.ToString("0"),
+                Text = "Select",
+                Selected = true
+            });
+            #endregion  Initializer ListOfProduct.
+
+            return View("~/Views/StoreManagement/Index.cshtml", category1);
         }
 
         [HttpPost]
@@ -63,15 +110,29 @@ namespace Store.Management.Controllers
             return View(objcategory);
         }
 
-        public JsonResult GetSubCategory(int CategoryID)
+        [HttpGet]
+        public JsonResult GetSubCategory(int categoryID)
         {
+            Category category1 = new Category();
+            category1.ListOfSubCategory = new List<SelectListItem>();
             List<SubCategory> subCategorylist = new List<SubCategory>();
-            // Getting Data from Database Using EntityFrameworkCore.
-            subCategorylist = (from subcategory in _context.SubCategory where subcategory.CategoryID.Equals(CategoryID) select subcategory).ToList();
-            // Inserting Select Item in List.
-            subCategorylist.Insert(0, new SubCategory { SubCategoryID = 0, SubCategoryName = "Select" });
 
-            return Json(new SelectList(subCategorylist, "SubCategoryID", "SubCategoryName"));
+            subCategorylist = (from subcategory in _context.SubCategory where subcategory.CategoryID.Equals(categoryID) select subcategory).ToList();
+
+            if (subCategorylist is not null && subCategorylist.Any())
+            {
+                for (int i = 0; i < subCategorylist.Count; i++)
+                {
+                    category1.ListOfSubCategory.Add(new SelectListItem()
+                    {
+                        Value = subCategorylist[i]?.SubCategoryID.ToString(),
+                        Text = subCategorylist[i]?.SubCategoryName?.ToString(),
+                        Selected = (i == 0)
+                    });
+                }
+            }
+
+            return Json(subCategorylist);
         }
 
         public JsonResult GetProducts(int SubCategoryID)
