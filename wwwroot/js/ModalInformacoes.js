@@ -18,7 +18,7 @@ function modalHide() {
     $("#modal-information").modal("hide");
 }
 
-function modalMessageErro(message) {
+function modalMessage(message) {
     $("#modal-information").find("#modal-information-message").text("");
     $("#modal-information").find("#modal-information-message").text(message);
 }

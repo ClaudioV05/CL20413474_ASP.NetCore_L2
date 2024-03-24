@@ -15,37 +15,37 @@ namespace Store.Management.Controllers
 
         public IActionResult Index()
         {
-            Category category1 = new Category();
-            List<Category> categorylist = new List<Category>();
-            category1.ListOfCategory = new List<SelectListItem>();
-            category1.ListOfSubCategory = new List<SelectListItem>();
-            category1.ListOfProduct = new List<SelectListItem>();
+            Category ctg = new Category();
+            List<Category> lstCategory = new List<Category>();
+            ctg.ListOfCategory = new List<SelectListItem>();
+            ctg.ListOfSubCategory = new List<SelectListItem>();
+            ctg.ListOfProduct = new List<SelectListItem>();
 
-            categorylist = (from category in _context.Category select category).ToList();
+            lstCategory = (from category in _context.Category select category).ToList();
 
             #region Initializer Category.
-            if (categorylist is not null && categorylist.Any())
+            if (lstCategory is not null && lstCategory.Any())
             {
-                category1.ListOfCategory.Add(new SelectListItem()
+                ctg.ListOfCategory.Add(new SelectListItem()
                 {
                     Value = Convert.ToString("0"),
                     Text = "Select",
                     Selected = true
                 });
 
-                for (int i = 0; i < categorylist.Count; i++)
+                for (int i = 0; i < lstCategory.Count; i++)
                 {
-                    category1.ListOfCategory.Add(new SelectListItem()
+                    ctg.ListOfCategory.Add(new SelectListItem()
                     {
-                        Value = categorylist[i]?.CategoryID.ToString(),
-                        Text = categorylist[i]?.CategoryName?.ToString(),
+                        Value = lstCategory[i]?.CategoryID.ToString(),
+                        Text = lstCategory[i]?.CategoryName?.ToString(),
                         Selected = false
                     });
                 }
             }
             else
             {
-                category1.ListOfCategory.Add(new SelectListItem()
+                ctg.ListOfCategory.Add(new SelectListItem()
                 {
                     Value = Convert.ToString("0"),
                     Text = "Select",
@@ -55,7 +55,7 @@ namespace Store.Management.Controllers
             #endregion Initializer Category.
 
             #region Initializer SubCategory.
-            category1.ListOfSubCategory.Add(new SelectListItem()
+            ctg.ListOfSubCategory.Add(new SelectListItem()
             {
                 Value = Convert.ToString("0"),
                 Text = "Select",
@@ -64,7 +64,7 @@ namespace Store.Management.Controllers
             #endregion Initializer SubCategory.
 
             #region Initializer ListOfProduct.
-            category1.ListOfProduct.Add(new SelectListItem()
+            ctg.ListOfProduct.Add(new SelectListItem()
             {
                 Value = Convert.ToString("0"),
                 Text = "Select",
@@ -72,7 +72,7 @@ namespace Store.Management.Controllers
             });
             #endregion  Initializer ListOfProduct.
 
-            return View("~/Views/StoreManagement/Index.cshtml", category1);
+            return View("~/Views/StoreManagement/Index.cshtml", ctg);
         }
 
         [HttpPost]
@@ -113,37 +113,51 @@ namespace Store.Management.Controllers
         [HttpGet]
         public JsonResult GetSubCategory(int categoryID)
         {
-            Category category1 = new Category();
-            category1.ListOfSubCategory = new List<SelectListItem>();
-            List<SubCategory> subCategorylist = new List<SubCategory>();
+            Category ctg = new Category();
+            ctg.ListOfSubCategory = new List<SelectListItem>();
+            List<SubCategory> lstSubCategory = new List<SubCategory>();
 
-            subCategorylist = (from subcategory in _context.SubCategory where subcategory.CategoryID.Equals(categoryID) select subcategory).ToList();
+            lstSubCategory = (from subcategory in _context.SubCategory where subcategory.CategoryID.Equals(categoryID) select subcategory).ToList();
 
-            if (subCategorylist is not null && subCategorylist.Any())
+            if (lstSubCategory is not null && lstSubCategory.Any())
             {
-                for (int i = 0; i < subCategorylist.Count; i++)
+                for (int i = 0; i < lstSubCategory.Count; i++)
                 {
-                    category1.ListOfSubCategory.Add(new SelectListItem()
+                    ctg.ListOfSubCategory.Add(new SelectListItem()
                     {
-                        Value = subCategorylist[i]?.SubCategoryID.ToString(),
-                        Text = subCategorylist[i]?.SubCategoryName?.ToString(),
+                        Value = lstSubCategory[i]?.SubCategoryID.ToString(),
+                        Text = lstSubCategory[i]?.SubCategoryName?.ToString(),
                         Selected = (i == 0)
                     });
                 }
             }
 
-            return Json(subCategorylist);
+            return Json(lstSubCategory);
         }
 
-        public JsonResult GetProducts(int SubCategoryID)
+        [HttpGet]
+        public JsonResult GetProducts(int subCategoryID)
         {
-            List<Product> productList = new List<Product>();
-            // Getting Data from Database Using EntityFrameworkCore.
-            productList = (from product in _context.Product where product.SubCategoryID.Equals(SubCategoryID) select product).ToList();
-            // Inserting Select Item in List.
-            productList.Insert(0, new Product { ProductID = 0, ProductName = "Select" });
+            Category ctg = new Category();
+            List<Product> lstProduct = new List<Product>();
+            ctg.ListOfProduct = new List<SelectListItem>();
 
-            return Json(new SelectList(productList, "ProductID", "ProductName"));
+            lstProduct = (from product in _context.Product where product.SubCategoryID.Equals(subCategoryID) select product).ToList();
+
+            if (lstProduct is not null && lstProduct.Any())
+            {
+                for (int i = 0; i < lstProduct.Count; i++)
+                {
+                    ctg.ListOfProduct.Add(new SelectListItem()
+                    {
+                        Value = lstProduct[i]?.ProductID.ToString(),
+                        Text = lstProduct[i]?.ProductName?.ToString(),
+                        Selected = (i == 0)
+                    });
+                }
+            }
+
+            return Json(lstProduct);
         }
     }
 }
