@@ -4,10 +4,11 @@ using Store.Management.Models;
 
 namespace Store.Management.Controllers
 {
-    public class DemoController : Controller
+    public class StoreManagementController : Controller
     {
         private readonly DatabaseContext _context;
-        public DemoController(DatabaseContext context)
+
+        public StoreManagementController(DatabaseContext context)
         {
             _context = context;
         }
@@ -25,11 +26,8 @@ namespace Store.Management.Controllers
 
             // ------- Assigning categorylist to ViewBag.ListofCategory -------
             ViewBag.ListofCategory = categorylist;
-            return View();
+            return View("~/Views/StoreManagement/Index.cshtml");
         }
-
-
-
 
         [HttpPost]
         public IActionResult Index(Category objcategory, FormCollection formCollection)

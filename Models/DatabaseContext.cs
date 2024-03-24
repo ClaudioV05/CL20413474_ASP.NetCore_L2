@@ -19,12 +19,6 @@ namespace Store.Management.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connection = _configuration.GetValue<string>("ConnectionStrings:DatabaseConnection");
-
-            if (string.IsNullOrEmpty(connection))
-            {
-                connection = "Data Source=sai-pc; UID=sa; Password=Pass$123; Database=StoreManagement;";
-            }
-
             optionsBuilder.UseSqlServer(connection);
         }
     }

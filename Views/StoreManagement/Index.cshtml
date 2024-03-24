@@ -13,7 +13,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#CategoryID').change(function () {
-                var url = '@Url.Content("~/")' + "Demo/GetSubCategory";
+                var url = '@Url.Content("~/")' + "StoreManagement/GetSubCategory";
                 var ddlsource = "#CategoryID";
                 $.getJSON(url, { CategoryID: $(ddlsource).val() }, function (data) {
                     var items = '';
@@ -26,7 +26,7 @@
             });
 
             $('#SubCategoryID').change(function () {
-                var url = '@Url.Content("~/")' + "Demo/GetProducts";
+                var url = '@Url.Content("~/")' + "StoreManagement/GetProducts";
                 var ddlsource = "#SubCategoryID";
                 $.getJSON(url, { SubCategoryID: $(ddlsource).val() }, function (data) {
                     var items = '';
@@ -40,7 +40,7 @@
         });
     </script>
 
-    <form asp-controller="Demo" asp-action="Index" method="post" class="form-horizontal" role="form">
+    <form asp-controller="StoreManagement" asp-action="Index" method="post" class="form-horizontal" role="form">
         <div class="form-group">
             <div class="row">
                 <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
