@@ -13,15 +13,16 @@ $('#dpdCategoryName').on("change", () => {
         $.ajax({
             url: urlBase,
             method: "GET",
-            contentType: "application/json",
+            contentType: "application/json; charset=utf-8",
             traditional: true,
-            success: (data) => {
+            datatype: "JSON",
+            success: (result) => {
                 $("#dpdSubCategoryName").empty();
                 enabledComponent($("#dpdSubCategoryName"));
                 $("#dpdSubCategoryName").append($('<option>', { value: "0", text: "Select" }));
 
-                if (data != null && data != undefined && data.length > 0) {
-                    $.each(data, (i, subcategory) => {
+                if (result != null && result != undefined && result.length > 0) {
+                    $.each(result, (i, subcategory) => {
                         $("#dpdSubCategoryName").append($("<option>", { value: subcategory.subCategoryID, text: subcategory.subCategoryName }));
                     });
                 }
@@ -40,19 +41,20 @@ $('#dpdSubCategoryName').on("change", () => {
     $.ajax({
         url: urlBase,
         method: "GET",
-        contentType: "application/json",
+        contentType: "application/json; charset=utf-8",
         traditional: true,
-        success: (data) => {
+        datatype: "JSON",
+        success: (result) => {
             $("#dpdProduct").empty();
             enabledComponent($("#dpdProduct"));
             $("#dpdProduct").append($('<option>', { value: "0", text: "Select" }));
 
-            if (data != null && data != undefined && data.length > 0) {
-                $.each(data, (i, product) => {
+            if (result != null && result != undefined && result.length > 0) {
+                $.each(result, (i, product) => {
                     $("#dpdProduct").append($("<option>", { value: product.productID, text: product.productName }));
                 });
 
-                
+
             }
         },
         error: (xhr, ajaxOptions, thrownError) => {
@@ -67,31 +69,41 @@ $('#dpdProduct').on("change", () => {
 });
 
 $('#btnSaveNewItem').on("click", () => {
-    let urlBase = `StoreManagement/GetProducts?subCategoryID=${$("#dpdSubCategoryName option:selected").val()}`;
+    let message = "";
 
-    $.ajax({
-        url: urlBase,
-        method: "GET",
-        contentType: "application/json",
-        traditional: true,
-        success: (data) => {
-            $("#dpdProduct").empty();
+    if ($("#dpdCategoryName option:selected").val() == null || $("#dpdCategoryName option:selected").val() == undefined || $("#dpdCategoryName option:selected").val() == "0") {
+        message = "Category not informed."
+    }
+    else if ($("#dpdSubCategoryName option:selected").val() == null || $("#dpdSubCategoryName option:selected").val() == undefined || $("#dpdSubCategoryName option:selected").val() == "0") {
+        message = "Sub Category not informed."
+    }
+    else if ($("#dpdProduct option:selected").val() == null || $("#dpdProduct option:selected").val() == undefined || $("#dpdProduct option:selected").val() == "0") {
+        message = "Product not informed."
+    }
 
-            if (data != null && data != undefined && data.length > 0) {
-                $("#dpdProduct").append($('<option>', { value: "0", text: "Select" }));
+    if (message == "") {
+        let urlBase = `StoreManagement/Save?value1=${23}`;
 
-                $.each(data, (i, product) => {
-                    $("#dpdProduct").append($('<option>', { value: product.productID, text: product.productName }));
-                });
-
-                $("#dpdProduct").val("0").trigger("change");
+        $.ajax({
+            url: urlBase,
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+            datatype: "JSON",
+            success: (data) => {
+                console.log(data);
+            },
+            error: (xhr, ajaxOptions, thrownError) => {
+                modalShow();
+                modalMessage("Occurred erro!");
             }
-        },
-        error: (xhr, ajaxOptions, thrownError) => {
-            modalShow();
-            modalMessage("Occurred erro!");
-        }
-    });
+        });
+    }
+    else {
+        modalShow();
+        modalMessage(message);
+    }
+
 });
 
 function initializeView() {

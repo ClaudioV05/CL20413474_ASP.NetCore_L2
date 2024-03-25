@@ -23,7 +23,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Login</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Register</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="Register">Register</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="StoreManagement" asp-action="Index">Store Management</a>
@@ -50,6 +50,8 @@
     <script src="~/js/StoreManagement.js" asp-append-version="true"></script>
     <script src="~/js/ModalInformacoes.js" asp-append-version="true"></script>
     <script src="~/js/Utils.js" asp-append-version="true"></script>
+    <script src="~/js/RegisterUser.js" asp-append-version="true"></script>
+    <script src="~/js/LoginUser.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

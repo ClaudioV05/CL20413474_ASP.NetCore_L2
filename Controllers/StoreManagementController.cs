@@ -13,6 +13,7 @@ namespace Store.Management.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             Category ctg = new Category();
@@ -76,38 +77,28 @@ namespace Store.Management.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(Category objcategory, IFormCollection formCollection)
+        public IActionResult Save(int value1)
         {
-            // Validation.
-            if (objcategory is null)
+            if (true)
             {
                 ModelState.AddModelError("", "Data should be informed");
             }
-            else if (objcategory.CategoryID.Equals(0))
+            else
             {
-                ModelState.AddModelError("", "Select Category");
-            }
-            else if (objcategory.SubCategoryID.Equals(0))
-            {
-                ModelState.AddModelError("", "Select SubCategory");
-            }
-            else if (objcategory.ProductID.Equals(0))
-            {
-                ModelState.AddModelError("", "Select Product");
+                // Getting selected Value.
+                var SubCategoryID = HttpContext.Request.Form["SubCategoryID"].ToString();
+                var ProductID = HttpContext.Request.Form["ProductID"].ToString();
+
+                // Setting Data back to ViewBag after Posting Form.
+                List<Category> categorylist = new List<Category>();
+                //categorylist = (from category in _context.Category select category).ToList();
+                categorylist.Insert(0, new Category { CategoryID = 0, CategoryName = "Select" });
+                // Assigning categorylist to ViewBag.ListofCategory.
+                ViewBag.ListofCategory = categorylist;
             }
 
-            // Getting selected Value.
-            var SubCategoryID = HttpContext.Request.Form["SubCategoryID"].ToString();
-            var ProductID = HttpContext.Request.Form["ProductID"].ToString();
-
-            // Setting Data back to ViewBag after Posting Form.
-            List<Category> categorylist = new List<Category>();
-            categorylist = (from category in _context.Category select category).ToList();
-            categorylist.Insert(0, new Category { CategoryID = 0, CategoryName = "Select" });
-            // Assigning categorylist to ViewBag.ListofCategory.
-            ViewBag.ListofCategory = categorylist;
-
-            return View(objcategory);
+            //return View(category);
+            return View(null);
         }
 
         [HttpGet]

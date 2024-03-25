@@ -9,3 +9,7 @@ function enabledComponent($) {
 function disabledComponent($) {
     $.prop("disabled", true);
 }
+
+function redirectToAnotherWebPage(url) {
+    $(location).prop('href', url)
+}

@@ -4,13 +4,14 @@ using System.Diagnostics;
 
 namespace Store.Management.Controllers
 {
-    public class HomeController : Controller
+    public class RegisterController : Controller
     {
-        public HomeController()
+
+        public RegisterController()
         {
         }
 
-        public IActionResult Index()
+        public IActionResult Register()
         {
             return View();
         }
