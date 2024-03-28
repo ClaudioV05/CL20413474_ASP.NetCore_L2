@@ -1,33 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using Store.Management.Domain.Entities;
 using Store.Management.Models;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Store.Management.Controllers
 {
     public class StoreManagementController : Controller
     {
-        private readonly DatabaseContext _context;
+        private readonly JsonSerializerOptions _jsonOptions;
+        private readonly IHttpClientFactory _httpClient;
 
-        public StoreManagementController(DatabaseContext context)
+        public StoreManagementController(IHttpClientFactory httpClient)
         {
-            _context = context;
+            _httpClient = httpClient;
+
+            _jsonOptions = new JsonSerializerOptions()
+            {
+                AllowTrailingCommas = false,
+                MaxDepth = 64,
+                Encoder = JavaScriptEncoder.Default,
+                WriteIndented = true,
+                IncludeFields = false,
+                IgnoreReadOnlyFields = false,
+                IgnoreReadOnlyProperties = false,
+                PropertyNameCaseInsensitive = true,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Category ctg = new Category();
-            List<Category> lstCategory = new List<Category>();
-            ctg.ListOfCategory = new List<SelectListItem>();
-            ctg.ListOfSubCategory = new List<SelectListItem>();
-            ctg.ListOfProduct = new List<SelectListItem>();
+            DtoStoreManagement dtoStoreManagement = new DtoStoreManagement();
+            var lstCategory = await this.LoadObjectCategory(_httpClient.CreateClient("StoreManagement"));
 
-            lstCategory = (from category in _context.Category select category).ToList();
-
-            #region Initializer Category.
+            // Initializer the list of Category.
             if (lstCategory is not null && lstCategory.Any())
             {
-                ctg.ListOfCategory.Add(new SelectListItem()
+                dtoStoreManagement?.ListCategory?.Add(new SelectListItem()
                 {
                     Value = Convert.ToString("0"),
                     Text = "Select",
@@ -36,7 +55,7 @@ namespace Store.Management.Controllers
 
                 for (int i = 0; i < lstCategory.Count; i++)
                 {
-                    ctg.ListOfCategory.Add(new SelectListItem()
+                    dtoStoreManagement?.ListCategory?.Add(new SelectListItem()
                     {
                         Value = lstCategory[i]?.CategoryID.ToString(),
                         Text = lstCategory[i]?.CategoryName?.ToString(),
@@ -46,36 +65,33 @@ namespace Store.Management.Controllers
             }
             else
             {
-                ctg.ListOfCategory.Add(new SelectListItem()
+                dtoStoreManagement?.ListCategory?.Add(new SelectListItem()
                 {
                     Value = Convert.ToString("0"),
                     Text = "Select",
                     Selected = true
                 });
             }
-            #endregion Initializer Category.
 
-            #region Initializer SubCategory.
-            ctg.ListOfSubCategory.Add(new SelectListItem()
+            // Initializer the list of the SubCategory.
+            dtoStoreManagement?.ListSubCategory?.Add(new SelectListItem()
             {
                 Value = Convert.ToString("0"),
                 Text = "Select",
                 Selected = true
             });
-            #endregion Initializer SubCategory.
 
-            #region Initializer ListOfProduct.
-            ctg.ListOfProduct.Add(new SelectListItem()
+            // Initializer the list of the Product.
+            dtoStoreManagement?.ListProduct?.Add(new SelectListItem()
             {
                 Value = Convert.ToString("0"),
                 Text = "Select",
                 Selected = true
             });
-            #endregion  Initializer ListOfProduct.
-
-            return View("~/Views/StoreManagement/Index.cshtml", ctg);
+            
+            return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
         }
-
+        /*
         [HttpPost]
         public IActionResult Save(int value1)
         {
@@ -150,5 +166,52 @@ namespace Store.Management.Controllers
 
             return Json(lstProduct);
         }
+
+        */
+
+        #region Utils.
+
+        public async Task<List<Category>> LoadObjectCategory(HttpClient httpClient)
+        {
+            var listItem = new List<Category>();
+
+            if (httpClient is not null)
+            {
+                try
+                {
+                    using var response = await httpClient.GetAsync($"StoreManagement", HttpCompletionOption.ResponseHeadersRead);
+
+                    if (response is not null && response.IsSuccessStatusCode)
+                    {
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            listItem = await System.Text.Json.JsonSerializer.DeserializeAsync<List<Category>>(await response.Content.ReadAsStreamAsync(), _jsonOptions);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Erro: {ex.Message}");
+                }
+            }
+
+            return listItem;
+        }
+
+        public StringContent ConvertObjectToStringContent(HttpClient httpClient, object obj)
+        {
+            const string MIME_TYPE_DEFAULT = "application/json";
+
+            httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(MIME_TYPE_DEFAULT));
+            
+            var jsonContent = JsonConvert.SerializeObject(obj);
+            var contentString = new StringContent(jsonContent, Encoding.UTF8, MIME_TYPE_DEFAULT);
+            contentString.Headers.ContentType = new MediaTypeHeaderValue(MIME_TYPE_DEFAULT);
+
+            return contentString;
+        }
+
+        #endregion Utils.
     }
 }
