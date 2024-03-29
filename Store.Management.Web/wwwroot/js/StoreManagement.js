@@ -106,6 +106,11 @@ $('#btnSaveNewItem').on("click", () => {
 
 });
 
+$('#btnEnabledSaveNewItem').on("click", () => {
+    $("dpdCategoryName").addClass("select-editable");
+});
+
+
 function initializeView() {
 
     $("#dpdSubCategoryName").empty();
