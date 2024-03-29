@@ -8,6 +8,36 @@ namespace Store.Management.Application.Interfaces
     public interface IServiceLinks
     {
         /// <summary>
+        /// Return the store management uri from Api.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementUriApi();
+
+        /// <summary>
+        /// Return the store management name of controller.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementNameController();
+
+        /// <summary>
+        /// Return the store management action name get the list of category.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementActionNameGetTheListOfCategory();
+
+        /// <summary>
+        /// Return the store management action name get the list of sub category by category id.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId();
+
+        /// <summary>
+        /// Return the store management action name get the list of product by subcategory id.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId();
+
+        /// <summary>
         /// To obtain the list of object category.
         /// </summary>
         /// <param name="uri"></param>

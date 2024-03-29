@@ -7,17 +7,21 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Configuration;
 
 namespace Store.Management.Application.Services
 {
     public class ServiceLinks : IServiceLinks
     {
+        private readonly IConfiguration _configuration;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
         private readonly JsonSerializerSettings _jsonSerializerSettings;
         private string _MimeTypeDefault => "application/json";
 
-        public ServiceLinks()
+        public ServiceLinks(IConfiguration configuration)
         {
+            _configuration = configuration;
+
             this._jsonSerializerOptions = new JsonSerializerOptions()
             {
                 AllowTrailingCommas = false,
@@ -40,6 +44,16 @@ namespace Store.Management.Application.Services
                 TypeNameAssemblyFormatHandling = TypeNameAssemblyFormatHandling.Simple
             };
         }
+
+        public string? ReturnStoreManagementUriApi() => _configuration["StoreManagementApi:StoreManagementUriApi"];
+
+        public string? ReturnStoreManagementNameController() => _configuration["StoreManagementApi:ControllerNameProduct"];
+
+        public string? ReturnStoreManagementActionNameGetTheListOfCategory() => _configuration["StoreManagementApi:ActionNameGetTheListOfCategory"];
+
+        public string? ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId() => _configuration["StoreManagementApi:ActionNameGetTheListOfSubCategoryByCategoryId"];
+
+        public string? ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId() => _configuration["StoreManagementApi:ActionNameGetTheListOfProductBySubCategoryId"];
 
         public List<Category> GetTheListOfCategory(string uri)
         {

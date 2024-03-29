@@ -29,7 +29,7 @@ namespace Store.Management.Web.Controllers
 
             //try
             //{
-                var lstCategory = _serviceLinks.GetTheListOfCategory("https://localhost:3000/StoreManagementApi/GetTheListOfCategory");
+                var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
 
                 if (dtoStoreManagement is not null)
                 {
@@ -90,14 +90,14 @@ namespace Store.Management.Web.Controllers
         [HttpGet]
         public JsonResult GetTheListOfSubCategoryByCategoryId(int id)
         {
-            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"https://localhost:3000/StoreManagementApi/GetTheListOfSubCategoryByCategoryId/{id}");
+            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId()}/{id}");
             return Json(lstSubCategory);
         }
 
         [HttpGet]
         public JsonResult GetTheListOfProductBySubCategoryId(int id)
         {
-            var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"https://localhost:3000/StoreManagementApi/GetTheListOfProductBySubCategoryId/{id}");
+            var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId()}/{id}");
             return Json(lstProducts);
         }
     }
