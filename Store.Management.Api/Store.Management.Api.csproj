@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NoWarn>$(NoWarn);SYSLIB0021</NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors> <!--The options control how the compiler reports errors and warnings.-->
+    <InvariantGlobalization>false</InvariantGlobalization> <!--Determines whether a .NET Core app runs in globalization-invariant mode without access to culture-specific data and behavior.-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Store.Management.Application\Store.Management.Application.csproj" />
+    <ProjectReference Include="..\Store.Management.Infrastructure.Data\Store.Management.Infrastructure.Data.csproj" />
+  </ItemGroup>
+
+</Project>
