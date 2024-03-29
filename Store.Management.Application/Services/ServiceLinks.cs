@@ -57,8 +57,6 @@ namespace Store.Management.Application.Services
 
         public List<Category> GetTheListOfCategory(string uri)
         {
-            List<Category> listItem = new List<Category>();
-
             try
             {
                 using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })
@@ -87,8 +85,6 @@ namespace Store.Management.Application.Services
 
         public List<SubCategory> LoadObjectSubCategoryById(string uri)
         {
-            List<SubCategory> listItem = new List<SubCategory>();
-
             try
             {
                 using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })
@@ -117,8 +113,6 @@ namespace Store.Management.Application.Services
 
         public List<Product> GetTheListOfProductBySubCategoryId(string uri)
         {
-            List<SubCategory> listItem = new List<SubCategory>();
-
             try
             {
                 using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })

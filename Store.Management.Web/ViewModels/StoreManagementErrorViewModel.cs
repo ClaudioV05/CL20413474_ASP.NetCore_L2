@@ -1,9 +1,13 @@
 namespace Store.Management.Web.Models
 {
+    /// <summary>
+    /// StoreManagementErrorViewModel.
+    /// </summary>
     public class StoreManagementErrorViewModel
     {
-        public string? RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        /// <summary>
+        /// Message.
+        /// </summary>
+        public string? Message { get; set; }
     }
 }

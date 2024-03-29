@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Store.Management.Application.Interfaces;
-using Store.Management.Domain.Entities;
 using Store.Management.Web.Models;
 using Store.Management.Web.ViewModels;
 
@@ -30,8 +29,7 @@ namespace Store.Management.Web.Controllers
 
             try
             {
-                //var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
-                var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+                var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
 
                 if (dtoStoreManagement is not null)
                 {
@@ -57,7 +55,7 @@ namespace Store.Management.Web.Controllers
             }
             catch (Exception)
             {
-                return View("~/Views/Shared/Error.cshtml", new StoreManagementErrorViewModel() { RequestId = "jfjfj"});
+                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
             }
         }
 

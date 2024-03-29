@@ -1,0 +1,32 @@
+﻿@model StoreManagementErrorViewModel
+
+@{
+    ViewData["Title"] = "Error - ";
+}
+
+<!-- #region Title Erro -->
+
+<div class="d-flex flex-row justify-content-center">
+    <div class="p-2">
+        <img src="~/image/erro.png" alt="Error!" width="200" height="200">
+    </div>
+</div>
+
+<!-- #endregion Title Erro -->
+
+<!-- #region Message Erro -->
+
+<div class="d-flex flex-row justify-content-center">
+    <div class="p-2">
+        @if (string.IsNullOrEmpty(Model.Message))
+        {
+            <h2 class="text-danger">An error occurred.</h2>
+        }
+        else
+        {
+            <h2 class="text-danger"> @Model.Message </h2>
+        }
+    </div>
+</div>
+
+<!-- #endregion Message Erro -->
