@@ -1,6 +1,6 @@
 namespace Store.Management.Web.Models
 {
-    public class ErrorViewModel
+    public class StoreManagementErrorViewModel
     {
         public string? RequestId { get; set; }
 

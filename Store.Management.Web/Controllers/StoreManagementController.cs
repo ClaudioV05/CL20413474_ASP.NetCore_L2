@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Store.Management.Application.Interfaces;
 using Store.Management.Domain.Entities;
+using Store.Management.Web.Models;
 using Store.Management.Web.ViewModels;
 
 namespace Store.Management.Web.Controllers
@@ -25,11 +26,12 @@ namespace Store.Management.Web.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            ViewModelStoreManagement dtoStoreManagement = new ViewModelStoreManagement();
+            StoreManagementViewModel dtoStoreManagement = new StoreManagementViewModel();
 
-            //try
-            //{
-                var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+            try
+            {
+                //var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+                var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
 
                 if (dtoStoreManagement is not null)
                 {
@@ -52,12 +54,11 @@ namespace Store.Management.Web.Controllers
                 }
 
                 return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
-            //}
-            //catch (Exception)
-            //{
-            //    // erro viu here
-            //    return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
-            //}
+            }
+            catch (Exception)
+            {
+                return View("~/Views/Shared/Error.cshtml", new StoreManagementErrorViewModel() { RequestId = "jfjfj"});
+            }
         }
 
         /*

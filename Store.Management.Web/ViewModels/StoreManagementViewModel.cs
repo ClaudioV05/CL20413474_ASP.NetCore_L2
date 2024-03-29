@@ -5,7 +5,7 @@ namespace Store.Management.Web.ViewModels
     /// <summary>
     /// View Model - Store Management.
     /// </summary>
-    public class ViewModelStoreManagement
+    public class StoreManagementViewModel
     {
         /// <summary>
         /// List of the Product.
@@ -22,7 +22,7 @@ namespace Store.Management.Web.ViewModels
         /// </summary>
         public List<SelectListItem>? ListSubCategory { get; set; }
 
-        public ViewModelStoreManagement()
+        public StoreManagementViewModel()
         {
             this.ListProduct = new List<SelectListItem>();
             this.ListCategory = new List<SelectListItem>();

@@ -107,6 +107,7 @@ $('#btnSaveNewItem').on("click", () => {
 });
 
 function initializeView() {
+
     $("#dpdSubCategoryName").empty();
     $("#dpdProduct").empty();
 

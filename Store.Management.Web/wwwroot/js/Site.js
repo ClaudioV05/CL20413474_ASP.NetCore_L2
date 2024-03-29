@@ -1,4 +1,16 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(document).ready(function () {
+    if ($("body").hasClass("dark") == false) {
+        $("body").addClass("dark");
+        $(".change").text("OFF");
+    }
+});
 
-// Write your JavaScript code.
+$(".change").on("click", () => {
+    if ($("body").hasClass("dark")) {
+        $("body").removeClass("dark");
+        $(".change").text("ON");
+    } else {
+        $("body").addClass("dark");
+        $(".change").text("OFF");
+    }
+});
