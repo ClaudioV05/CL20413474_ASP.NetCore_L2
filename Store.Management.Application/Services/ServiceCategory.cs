@@ -18,7 +18,11 @@ namespace Store.Management.Application.Services
             try
             {
                 var listOfCategory = _repositoryCategory.ObtainAllListOfCategory();
-                return (from category in listOfCategory where category.CategoryID > 0 select category).ToList();
+
+                return (from category
+                        in listOfCategory 
+                        where category.CategoryID > 0 
+                        select category).ToList();
             }
             catch (Exception)
             {

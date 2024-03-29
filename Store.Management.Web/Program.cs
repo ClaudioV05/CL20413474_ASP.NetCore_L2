@@ -5,7 +5,7 @@ using Store.Management.Application.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.TryAddScoped<IServiceHttpClient, ServiceHttpClient>();
+builder.Services.TryAddScoped<IServiceLinks, ServiceLinks>();
 
 builder.Services.AddControllersWithViews();
 

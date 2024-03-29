@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Store.Management.Web.Models
+namespace Store.Management.Web.ViewModels
 {
     /// <summary>
-    /// Data transfer objct - Store Management.
+    /// View Model - Store Management.
     /// </summary>
-    public class DtoStoreManagement
+    public class ViewModelStoreManagement
     {
         /// <summary>
         /// List of the Product.
@@ -22,7 +22,7 @@ namespace Store.Management.Web.Models
         /// </summary>
         public List<SelectListItem>? ListSubCategory { get; set; }
 
-        public DtoStoreManagement()
+        public ViewModelStoreManagement()
         {
             this.ListProduct = new List<SelectListItem>();
             this.ListCategory = new List<SelectListItem>();

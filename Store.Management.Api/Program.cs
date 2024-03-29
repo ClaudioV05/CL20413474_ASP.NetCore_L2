@@ -4,7 +4,6 @@ using Store.Management.Application.Services;
 using Store.Management.Domain.Interfaces;
 using Store.Management.Infrastructure.Data.Context;
 using Store.Management.Infrastructure.Data.Repositories;
-using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +12,9 @@ builder.Services.AddDbContext<DatabaseContext>();
 
 builder.Services.TryAddScoped<IServiceCategory, ServiceCategory>();
 builder.Services.TryAddScoped<IRepositoryCategory, RepositoryCategory>();
+
+builder.Services.TryAddScoped<IServiceSubCategory, ServiceSubCategory>();
+builder.Services.TryAddScoped<IRepositorySubCategory, RepositorySubCategory>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

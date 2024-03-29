@@ -3,9 +3,9 @@
 namespace Store.Management.Application.Interfaces
 {
     /// <summary>
-    /// Interface IServiceHttpClient.
+    /// Interface IServiceLinks.
     /// </summary>
-    public interface IServiceHttpClient
+    public interface IServiceLinks
     {
         /// <summary>
         /// Load the list of object category.
@@ -13,5 +13,12 @@ namespace Store.Management.Application.Interfaces
         /// <param name="uri"></param>
         /// <returns>The list from object category</returns>
         List<Category> LoadObjectCategory(string uri);
+
+        /// <summary>
+        /// Load the list of object sub category.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns>The list from object sub category</returns>
+        List<SubCategory> LoadObjectSubCategoryById(string uri);
     }
 }

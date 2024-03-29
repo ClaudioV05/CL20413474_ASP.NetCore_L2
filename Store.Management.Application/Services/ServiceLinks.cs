@@ -11,13 +11,13 @@ using System.Text.Json.Serialization;
 
 namespace Store.Management.Application.Services
 {
-    public class ServiceHttpClient : IServiceHttpClient
+    public class ServiceLinks : IServiceLinks
     {
         private readonly JsonSerializerOptions _jsonSerializerOptions;
         private readonly JsonSerializerSettings _jsonSerializerSettings;
         private string _MimeTypeDefault => "application/json";
 
-        public ServiceHttpClient()
+        public ServiceLinks()
         {
             this._jsonSerializerOptions = new JsonSerializerOptions()
             {
@@ -60,6 +60,36 @@ namespace Store.Management.Application.Services
                     webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
 
                     return JsonConvert.DeserializeObject<List<Category>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                }
+            }
+            catch (WebException ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+        }
+
+        public List<SubCategory> LoadObjectSubCategoryById(string uri)
+        {
+            List<SubCategory> listItem = new List<SubCategory>();
+
+            try
+            {
+                using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })
+                {
+                    if (string.IsNullOrEmpty(uri))
+                    {
+                        throw new Exception("Route do not informed.");
+                    }
+
+                    webClient.Headers[HttpRequestHeader.ContentType] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
+
+                    return JsonConvert.DeserializeObject<List<SubCategory>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
                 }
             }
             catch (WebException ex)
