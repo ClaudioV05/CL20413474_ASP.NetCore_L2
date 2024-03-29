@@ -20,5 +20,12 @@ namespace Store.Management.Application.Interfaces
         /// <param name="uri"></param>
         /// <returns>The list from object sub category</returns>
         List<SubCategory> LoadObjectSubCategoryById(string uri);
+
+        /// <summary>
+        /// Obtain the list of product by sub category id.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns>he list from object product</returns>
+        List<Product> GetTheListOfProductBySubCategoryId(string uri);
     }
 }

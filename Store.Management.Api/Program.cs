@@ -10,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<DatabaseContext>();
 
+builder.Services.TryAddScoped<IServiceProduct, ServiceProduct>();
+builder.Services.TryAddScoped<IRepositoryProduct, RepositoryProduct>();
+
 builder.Services.TryAddScoped<IServiceCategory, ServiceCategory>();
 builder.Services.TryAddScoped<IRepositoryCategory, RepositoryCategory>();
 

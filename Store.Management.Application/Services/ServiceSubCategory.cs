@@ -18,7 +18,10 @@ namespace Store.Management.Application.Services
             try
             {
                 var listOfSubCategory = _repositorySubCategory.ObtainAllListOfSubCategory();
-                return (from subCategory in listOfSubCategory where subCategory.CategoryID > 0 select subCategory).ToList();
+                return (from subCategory
+                        in listOfSubCategory
+                        where subCategory.CategoryID > 0
+                        select subCategory).ToList();
             }
             catch (Exception)
             {
@@ -33,8 +36,8 @@ namespace Store.Management.Application.Services
                 var listOfSubCategory = _repositorySubCategory.ObtainAllListOfSubCategory();
 
                 return (from subCategory
-                        in listOfSubCategory 
-                        where subCategory.CategoryID > 0 
+                        in listOfSubCategory
+                        where subCategory.CategoryID > 0
                         && subCategory.CategoryID.Equals(categoryID)
                         select subCategory).ToList();
             }

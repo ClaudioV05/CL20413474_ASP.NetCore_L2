@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Store.Management.Application.Interfaces;
+using Store.Management.Domain.Entities;
 using Store.Management.Web.ViewModels;
 
 namespace Store.Management.Web.Controllers
@@ -25,8 +26,9 @@ namespace Store.Management.Web.Controllers
         public async Task<IActionResult> Index()
         {
             ViewModelStoreManagement dtoStoreManagement = new ViewModelStoreManagement();
-            try
-            {
+
+            //try
+            //{
                 var lstCategory = _serviceLinks.LoadObjectCategory("https://localhost:3000/StoreManagementApi/ObtainAllListOfCategory");
 
                 if (dtoStoreManagement is not null)
@@ -50,12 +52,12 @@ namespace Store.Management.Web.Controllers
                 }
 
                 return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
-            }
-            catch (Exception)
-            {
-                // erro viu here
-                return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
-            }
+            //}
+            //catch (Exception)
+            //{
+            //    // erro viu here
+            //    return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
+            //}
         }
 
         /*
@@ -88,29 +90,15 @@ namespace Store.Management.Web.Controllers
         [HttpGet]
         public JsonResult GetSubCategory(int categoryID)
         {
-            ViewModelStoreManagement dtoStoreManagement = new ViewModelStoreManagement();
             var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"https://localhost:3000/StoreManagementApi/ObtainListOfSubCategoryById/{categoryID}");
             return Json(lstSubCategory);
         }
 
-        /*[HttpGet]
+        [HttpGet]
         public JsonResult GetProducts(int subCategoryID)
         {
-            Category ctg = new Category();
-            List<Product> lstProduct = new List<Product>();
-            ctg.ListOfProduct = new List<SelectListItem>();
-
-            lstProduct = (from product in _context.Product where product.SubCategoryID.Equals(subCategoryID) select product).ToList();
-
-            if (lstProduct is not null && lstProduct.Any())
-            {
-                for (int i = 0; i < lstProduct.Count; i++)
-                {
-                    ctg.ListOfProduct.Add(new SelectListItem() { Value = lstProduct[i]?.ProductID.ToString(), Text = lstProduct[i]?.ProductName?.ToString(), Selected = (i == 0) });
-                }
-            }
-
-            return Json(lstProduct);
-        }*/
+            var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"https://localhost:3000/StoreManagementApi/GetTheListOfProductBySubCategoryId/{subCategoryID}");
+            return Json(lstProducts);
+        }
     }
 }

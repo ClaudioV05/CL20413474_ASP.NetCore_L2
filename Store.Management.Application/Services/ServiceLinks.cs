@@ -102,6 +102,36 @@ namespace Store.Management.Application.Services
             }
         }
 
+        public List<Product> GetTheListOfProductBySubCategoryId(string uri)
+        {
+            List<SubCategory> listItem = new List<SubCategory>();
+
+            try
+            {
+                using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })
+                {
+                    if (string.IsNullOrEmpty(uri))
+                    {
+                        throw new Exception("Route do not informed.");
+                    }
+
+                    webClient.Headers[HttpRequestHeader.ContentType] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
+
+                    return JsonConvert.DeserializeObject<List<Product>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                }
+            }
+            catch (WebException ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+        }
+
         private StringContent ConvertObjectToStringContent(HttpClient httpClient, object obj)
         {
             httpClient.DefaultRequestHeaders.Accept.Clear();
