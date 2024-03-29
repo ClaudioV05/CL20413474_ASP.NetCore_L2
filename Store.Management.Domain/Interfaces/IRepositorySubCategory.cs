@@ -8,7 +8,7 @@ namespace Store.Management.Domain.Interfaces
     public interface IRepositorySubCategory
     {
         /// <summary>
-        /// Obtain all list of sub category.
+        /// To obtain all list of sub category.
         /// </summary>
         /// <returns>The list of sub category.</returns>
         List<SubCategory> ObtainAllListOfSubCategory();

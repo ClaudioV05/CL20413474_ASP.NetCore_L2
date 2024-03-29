@@ -8,9 +8,9 @@ namespace Store.Management.Domain.Interfaces
     public interface IRepositoryCategory
     {
         /// <summary>
-        /// Obtain all list of category.
+        /// To obtain the list of category.
         /// </summary>
         /// <returns>The list of category.</returns>
-        List<Category> ObtainAllListOfCategory();
+        List<Category> GetTheListOfCategory();
     }
 }

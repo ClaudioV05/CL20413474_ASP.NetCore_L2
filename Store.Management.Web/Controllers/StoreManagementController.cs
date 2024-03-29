@@ -29,7 +29,7 @@ namespace Store.Management.Web.Controllers
 
             //try
             //{
-                var lstCategory = _serviceLinks.LoadObjectCategory("https://localhost:3000/StoreManagementApi/ObtainAllListOfCategory");
+                var lstCategory = _serviceLinks.GetTheListOfCategory("https://localhost:3000/StoreManagementApi/GetTheListOfCategory");
 
                 if (dtoStoreManagement is not null)
                 {

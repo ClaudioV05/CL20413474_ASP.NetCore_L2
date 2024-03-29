@@ -8,13 +8,13 @@ namespace Store.Management.Application.Interfaces
     public interface IServiceSubCategory
     {
         /// <summary>
-        /// Obtain all list of sub category.
+        /// To obtain all list of sub category.
         /// </summary>
         /// <returns>The list of sub category.</returns>
         IEnumerable<SubCategory> ObtainAllListOfSubCategory();
 
         /// <summary>
-        /// Obtain all list of sub category by id.
+        /// To obtain all list of sub category by id.
         /// </summary>
         /// <param name="categoryID"></param>
         /// <returns></returns>

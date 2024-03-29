@@ -38,12 +38,12 @@ namespace Store.Management.Api.Controllers
         /// <returns></returns>
         [EnableCors]
         [HttpGet()]
-        [Route("ObtainAllListOfCategory")]
+        [Route("GetTheListOfCategory")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Category>))]
-        public IEnumerable<Category> ObtainAllListOfCategory()
+        public IEnumerable<Category> GetTheListOfCategory()
         {
-            return _serviceCategory.ObtainAllListOfCategory();
+            return _serviceCategory.GetTheListOfCategory();
         }
 
         /// <summary>

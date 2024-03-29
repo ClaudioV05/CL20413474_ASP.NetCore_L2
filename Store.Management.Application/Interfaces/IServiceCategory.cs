@@ -8,9 +8,9 @@ namespace Store.Management.Application.Interfaces
     public interface IServiceCategory
     {
         /// <summary>
-        /// Obtain all list of category.
+        /// To obtain the list of category.
         /// </summary>
         /// <returns>The list of category.</returns>
-        IEnumerable<Category> ObtainAllListOfCategory();
+        IEnumerable<Category> GetTheListOfCategory();
     }
 }

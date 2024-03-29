@@ -20,6 +20,6 @@ namespace Store.Management.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public List<Category> ObtainAllListOfCategory() => _context?.Category?.ToList();
+        public List<Category> GetTheListOfCategory() => _context?.Category?.ToList();
     }
 }

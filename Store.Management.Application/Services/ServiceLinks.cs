@@ -2,7 +2,6 @@
 using Store.Management.Application.Interfaces;
 using Store.Management.Domain.Entities;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -42,7 +41,7 @@ namespace Store.Management.Application.Services
             };
         }
 
-        public List<Category> LoadObjectCategory(string uri)
+        public List<Category> GetTheListOfCategory(string uri)
         {
             List<Category> listItem = new List<Category>();
 

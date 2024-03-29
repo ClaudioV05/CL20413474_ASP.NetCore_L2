@@ -13,11 +13,11 @@ namespace Store.Management.Application.Services
             _repositoryCategory = repositoryCategory;
         }
 
-        public IEnumerable<Category> ObtainAllListOfCategory()
+        public IEnumerable<Category> GetTheListOfCategory()
         {
             try
             {
-                var listOfCategory = _repositoryCategory.ObtainAllListOfCategory();
+                var listOfCategory = _repositoryCategory.GetTheListOfCategory();
 
                 return (from category
                         in listOfCategory

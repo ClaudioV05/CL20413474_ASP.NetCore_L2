@@ -8,7 +8,7 @@ namespace Store.Management.Domain.Interfaces
     public interface IRepositoryProduct
     {
         /// <summary>
-        /// Obtain the list of product.
+        /// To obtain the list of product.
         /// </summary>
         /// <returns>The list of product.</returns>
         List<Product> GetTheListOfProduct();

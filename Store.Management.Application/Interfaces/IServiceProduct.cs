@@ -8,13 +8,13 @@ namespace Store.Management.Application.Interfaces
     public interface IServiceProduct
     {
         /// <summary>
-        /// Obtain the list of product.
+        /// To obtain the list of product.
         /// </summary>
         /// <returns>The list of product.</returns>
         IEnumerable<Product> GetTheListOfProduct();
 
         /// <summary>
-        /// Obtain the list of product by sub category id.
+        /// To obtain the list of product by sub category id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
