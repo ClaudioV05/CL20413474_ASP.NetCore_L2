@@ -11,6 +11,6 @@ namespace Store.Management.Domain.Interfaces
         /// To obtain the list of category.
         /// </summary>
         /// <returns>The list of category.</returns>
-        List<Category> GetTheListOfCategory();
+        IEnumerable<Category> GetTheListOfCategory();
     }
 }

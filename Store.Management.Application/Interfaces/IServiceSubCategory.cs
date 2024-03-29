@@ -8,16 +8,16 @@ namespace Store.Management.Application.Interfaces
     public interface IServiceSubCategory
     {
         /// <summary>
-        /// To obtain all list of sub category.
+        /// To obtain list of sub category.
         /// </summary>
         /// <returns>The list of sub category.</returns>
-        IEnumerable<SubCategory> ObtainAllListOfSubCategory();
+        IEnumerable<SubCategory> GetListOfSubCategory();
 
         /// <summary>
-        /// To obtain all list of sub category by id.
+        /// To obtain the list of category by sub category id.
         /// </summary>
-        /// <param name="categoryID"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        IEnumerable<SubCategory> ObtainListOfSubCategoryById(int categoryID);
+        IEnumerable<SubCategory> GetTheListOfSubCategoryByCategoryId(int id);
     }
 }

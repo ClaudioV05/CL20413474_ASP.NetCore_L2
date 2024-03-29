@@ -90,7 +90,7 @@ namespace Store.Management.Web.Controllers
         [HttpGet]
         public JsonResult GetSubCategory(int categoryID)
         {
-            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"https://localhost:3000/StoreManagementApi/ObtainListOfSubCategoryById/{categoryID}");
+            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"https://localhost:3000/StoreManagementApi/GetTheListOfSubCategoryByCategoryId/{categoryID}");
             return Json(lstSubCategory);
         }
 

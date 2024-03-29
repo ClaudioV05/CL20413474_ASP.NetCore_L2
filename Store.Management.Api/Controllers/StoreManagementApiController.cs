@@ -53,12 +53,12 @@ namespace Store.Management.Api.Controllers
         /// <returns></returns>
         [EnableCors]
         [HttpGet()]
-        [Route("ObtainListOfSubCategoryById/{categoryID}")]
+        [Route("GetTheListOfSubCategoryByCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SubCategory>))]
-        public IEnumerable<SubCategory> ObtainListOfSubCategoryById(int categoryID)
+        public IEnumerable<SubCategory> GetTheListOfSubCategoryByCategoryId(int id)
         {
-            return _serviceSubCategory.ObtainListOfSubCategoryById(categoryID);
+            return _serviceSubCategory.GetTheListOfSubCategoryByCategoryId(id);
         }
 
         /// <summary>

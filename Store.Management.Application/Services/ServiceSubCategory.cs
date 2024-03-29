@@ -13,11 +13,12 @@ namespace Store.Management.Application.Services
             _repositorySubCategory = repositorySubCategory;
         }
 
-        public IEnumerable<SubCategory> ObtainAllListOfSubCategory()
+        public IEnumerable<SubCategory> GetListOfSubCategory()
         {
             try
             {
-                var listOfSubCategory = _repositorySubCategory.ObtainAllListOfSubCategory();
+                var listOfSubCategory = _repositorySubCategory.GetListOfSubCategory();
+
                 return (from subCategory
                         in listOfSubCategory
                         where subCategory.CategoryID > 0
@@ -25,25 +26,25 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return new List<SubCategory>();
+                return Enumerable.Empty<SubCategory>();
             }
         }
 
-        public IEnumerable<SubCategory> ObtainListOfSubCategoryById(int categoryID)
+        public IEnumerable<SubCategory> GetTheListOfSubCategoryByCategoryId(int id)
         {
             try
             {
-                var listOfSubCategory = _repositorySubCategory.ObtainAllListOfSubCategory();
+                var listOfSubCategory = _repositorySubCategory.GetListOfSubCategory();
 
                 return (from subCategory
                         in listOfSubCategory
                         where subCategory.CategoryID > 0
-                        && subCategory.CategoryID.Equals(categoryID)
+                        && subCategory.CategoryID.Equals(id)
                         select subCategory).ToList();
             }
             catch (Exception)
             {
-                return new List<SubCategory>();
+                return Enumerable.Empty<SubCategory>();
             }
         }
     }

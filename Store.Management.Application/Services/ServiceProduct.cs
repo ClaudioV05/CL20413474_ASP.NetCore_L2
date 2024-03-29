@@ -26,7 +26,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return new List<Product>();
+                return Enumerable.Empty<Product>();
             }
         }
 
@@ -44,7 +44,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return new List<Product>();
+                return Enumerable.Empty<Product>();
             }
         }
     }

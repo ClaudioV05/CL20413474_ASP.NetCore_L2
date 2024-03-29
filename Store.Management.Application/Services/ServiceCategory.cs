@@ -26,7 +26,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return new List<Category>();
+                return Enumerable.Empty<Category>();
             }
         }
     }
