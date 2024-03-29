@@ -1,13 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Store.Management.Application.Interfaces;
 using Store.Management.Domain.Entities;
 using System.Net;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration;
 
 namespace Store.Management.Application.Services
 {
@@ -83,7 +82,7 @@ namespace Store.Management.Application.Services
             }
         }
 
-        public List<SubCategory> LoadObjectSubCategoryById(string uri)
+        public List<SubCategory> GetTheListOfSubCategoryByCategoryId(string uri)
         {
             try
             {
@@ -137,18 +136,6 @@ namespace Store.Management.Application.Services
             {
                 throw new Exception($"Erro: {ex.Message}");
             }
-        }
-
-        private StringContent ConvertObjectToStringContent(HttpClient httpClient, object obj)
-        {
-            httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(_MimeTypeDefault));
-
-            var jsonContent = JsonConvert.SerializeObject(obj);
-            var contentString = new StringContent(jsonContent, Encoding.UTF8, _MimeTypeDefault);
-            contentString.Headers.ContentType = new MediaTypeHeaderValue(_MimeTypeDefault);
-
-            return contentString;
         }
     }
 }

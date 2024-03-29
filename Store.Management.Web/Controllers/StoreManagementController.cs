@@ -23,35 +23,14 @@ namespace Store.Management.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            StoreManagementViewModel dtoStoreManagement = new StoreManagementViewModel();
+            StoreManagementViewModel storeManagementViewModel = new StoreManagementViewModel();
 
             try
             {
-                var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
-
-                if (dtoStoreManagement is not null)
-                {
-                    // Initializer the list of Category.
-                    dtoStoreManagement?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
-
-                    // Initializer the list of the SubCategory.
-                    dtoStoreManagement?.ListSubCategory?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
-
-                    // Initializer the list of the Product.
-                    dtoStoreManagement?.ListProduct?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
-
-                    if (lstCategory is not null && lstCategory.Any())
-                    {
-                        for (int i = 0; i < lstCategory.Count; i++)
-                        {
-                            dtoStoreManagement?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(lstCategory[i]?.CategoryID), Text = lstCategory[i]?.CategoryName?.ToString(), Selected = false });
-                        }
-                    }
-                }
-
-                return View("~/Views/StoreManagement/Index.cshtml", dtoStoreManagement);
+                this.InitializeView(ref storeManagementViewModel);
+                return View("~/Views/StoreManagement/Index.cshtml", storeManagementViewModel);
             }
             catch (Exception)
             {
@@ -59,37 +38,10 @@ namespace Store.Management.Web.Controllers
             }
         }
 
-        /*
-       [HttpPost]
-       public IActionResult Save(int value1)
-       {
-           if (true)
-           {
-               ModelState.AddModelError("", "Data should be informed");
-           }
-           else
-           {
-               // Getting selected Value.
-               var SubCategoryID = HttpContext.Request.Form["SubCategoryID"].ToString();
-               var ProductID = HttpContext.Request.Form["ProductID"].ToString();
-
-               // Setting Data back to ViewBag after Posting Form.
-               List<Category> categorylist = new List<Category>();
-               //categorylist = (from category in _context.Category select category).ToList();
-               categorylist.Insert(0, new Category { CategoryID = 0, CategoryName = "Select" });
-               // Assigning categorylist to ViewBag.ListofCategory.
-               ViewBag.ListofCategory = categorylist;
-           }
-
-           //return View(category);
-           return View(null);
-       }
-        */
-
         [HttpGet]
         public JsonResult GetTheListOfSubCategoryByCategoryId(int id)
         {
-            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId()}/{id}");
+            var lstSubCategory = _serviceLinks.GetTheListOfSubCategoryByCategoryId($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId()}/{id}");
             return Json(lstSubCategory);
         }
 
@@ -99,5 +51,48 @@ namespace Store.Management.Web.Controllers
             var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId()}/{id}");
             return Json(lstProducts);
         }
+
+        [HttpPost]
+        public IActionResult SaveNewItemListOfProduct(string product)
+        {
+            // Jesus Cristo.
+            // Claudio Fernandes.
+
+            return View(null);
+        }
+
+        #region InitializeView
+
+        /// <summary>
+        /// Initialize the view index.
+        /// </summary>
+        /// <param name="storeManagementViewModel"></param>
+        private void InitializeView(ref StoreManagementViewModel storeManagementViewModel)
+        {
+           
+            var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+
+            if (storeManagementViewModel is not null)
+            {
+                // Initializer the list of Category.
+                storeManagementViewModel?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
+
+                // Initializer the list of the SubCategory.
+                storeManagementViewModel?.ListSubCategory?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
+
+                // Initializer the list of the Product.
+                storeManagementViewModel?.ListProduct?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
+
+                if (lstCategory is not null && lstCategory.Any())
+                {
+                    for (int i = 0; i < lstCategory.Count; i++)
+                    {
+                        storeManagementViewModel?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(lstCategory[i]?.CategoryID), Text = lstCategory[i]?.CategoryName?.ToString(), Selected = false });
+                    }
+                }
+            }
+        }
+
+        #endregion InitializeView
     }
 }

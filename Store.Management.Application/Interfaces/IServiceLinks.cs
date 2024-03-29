@@ -49,7 +49,7 @@ namespace Store.Management.Application.Interfaces
         /// </summary>
         /// <param name="uri"></param>
         /// <returns>The list from object sub category</returns>
-        List<SubCategory> LoadObjectSubCategoryById(string uri);
+        List<SubCategory> GetTheListOfSubCategoryByCategoryId(string uri);
 
         /// <summary>
         /// To obtain the list of product by sub category id.
