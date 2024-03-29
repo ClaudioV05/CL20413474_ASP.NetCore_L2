@@ -88,16 +88,16 @@ namespace Store.Management.Web.Controllers
         */
 
         [HttpGet]
-        public JsonResult GetSubCategory(int categoryID)
+        public JsonResult GetTheListOfSubCategoryByCategoryId(int id)
         {
-            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"https://localhost:3000/StoreManagementApi/GetTheListOfSubCategoryByCategoryId/{categoryID}");
+            var lstSubCategory = _serviceLinks.LoadObjectSubCategoryById($"https://localhost:3000/StoreManagementApi/GetTheListOfSubCategoryByCategoryId/{id}");
             return Json(lstSubCategory);
         }
 
         [HttpGet]
-        public JsonResult GetProducts(int subCategoryID)
+        public JsonResult GetTheListOfProductBySubCategoryId(int id)
         {
-            var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"https://localhost:3000/StoreManagementApi/GetTheListOfProductBySubCategoryId/{subCategoryID}");
+            var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"https://localhost:3000/StoreManagementApi/GetTheListOfProductBySubCategoryId/{id}");
             return Json(lstProducts);
         }
     }

@@ -8,7 +8,7 @@ $('#dpdCategoryName').on("change", () => {
         initializeView();
     }
     else {
-        let urlBase = `StoreManagement/GetSubCategory?categoryID=${$("#dpdCategoryName option:selected").val()}`;
+        let urlBase = `StoreManagement/GetTheListOfSubCategoryByCategoryId?id=${$("#dpdCategoryName option:selected").val()}`;
 
         $.ajax({
             url: urlBase,
@@ -36,7 +36,7 @@ $('#dpdCategoryName').on("change", () => {
 });
 
 $('#dpdSubCategoryName').on("change", () => {
-    let urlBase = `StoreManagement/GetProducts?subCategoryID=${$("#dpdSubCategoryName option:selected").val()}`;
+    let urlBase = `StoreManagement/GetTheListOfProductBySubCategoryId?id=${$("#dpdSubCategoryName option:selected").val()}`;
 
     $.ajax({
         url: urlBase,
