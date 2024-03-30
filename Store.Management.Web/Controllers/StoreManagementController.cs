@@ -7,7 +7,7 @@ using Store.Management.Web.ViewModels;
 namespace Store.Management.Web.Controllers
 {
     /// <summary>
-    /// StoreManagementWebController
+    /// StoreManagementWebController.
     /// </summary>
     public class StoreManagementController : Controller
     {

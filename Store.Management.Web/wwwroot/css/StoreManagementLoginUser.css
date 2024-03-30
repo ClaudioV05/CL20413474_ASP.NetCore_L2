@@ -1,6 +1,7 @@
-.store-management-label-global {
+.store-management-label-login-global {
     text-align: left;
     text-transform: uppercase;
     font-weight: 500;
     font-size: 1.0em;
+    margin-bottom: 5px;
 }

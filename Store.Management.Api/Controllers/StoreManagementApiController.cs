@@ -40,7 +40,7 @@ namespace Store.Management.Api.Controllers
         [HttpGet()]
         [Route("GetTheListOfCategory")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Category>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Category>>))]
         public async Task<IEnumerable<Category>> GetTheListOfCategory()
         {
             return await _serviceCategory.GetTheListOfCategory();
@@ -55,7 +55,7 @@ namespace Store.Management.Api.Controllers
         [HttpGet()]
         [Route("GetTheListOfSubCategoryByCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SubCategory>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<SubCategory>>))]
         public async Task<IEnumerable<SubCategory>> GetTheListOfSubCategoryByCategoryId(int id)
         {
             return await _serviceSubCategory.GetTheListOfSubCategoryByCategoryId(id);
@@ -70,10 +70,25 @@ namespace Store.Management.Api.Controllers
         [HttpGet()]
         [Route("GetTheListOfProductBySubCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Product>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Product>>))]
         public async Task<IEnumerable<Product>> GetTheListOfProductBySubCategoryId(int id)
         {
             return await _serviceProduct.GetTheListOfProductBySubCategoryId(id);
+        }
+
+        /// <summary>
+        /// Login user
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        [EnableCors]
+        [HttpGet()]
+        [Route("LoginUser")]
+        [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<User>))]
+        public async Task<User> LoginUser()
+        {
+            return null;
         }
     }
 }

@@ -21,3 +21,7 @@ function showComponent($) {
 function redirectToAnotherWebPage(url) {
     $(location).prop('href', url)
 }
+
+function sendRequisicionAjax(uri, httpVerb, contentType, isModeTraditional, theDatatype) {
+
+}

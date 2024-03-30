@@ -1,7 +1,7 @@
 namespace Store.Management.Web.Models
 {
     /// <summary>
-    /// StoreManagementErrorViewModel.
+    ///View Model - Store management error.
     /// </summary>
     public class StoreManagementErrorViewModel
     {

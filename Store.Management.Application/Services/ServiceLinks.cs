@@ -44,6 +44,8 @@ namespace Store.Management.Application.Services
             };
         }
 
+        #region Configuration.
+
         public string? ReturnStoreManagementUriApi() => _configuration["StoreManagementApi:StoreManagementUriApi"];
 
         public string? ReturnStoreManagementNameController() => _configuration["StoreManagementApi:ControllerNameProduct"];
@@ -53,6 +55,14 @@ namespace Store.Management.Application.Services
         public string? ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId() => _configuration["StoreManagementApi:ActionNameGetTheListOfSubCategoryByCategoryId"];
 
         public string? ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId() => _configuration["StoreManagementApi:ActionNameGetTheListOfProductBySubCategoryId"];
+        
+        public string? ReturnStoreManagementActionNameLoginUser() => _configuration["StoreManagementApi:ActionNameLoginUser"];
+
+        public string? ReturnStoreManagementActionNameRegistrationUser() => _configuration["StoreManagementApi:ActionNameRegistrationUser"];
+
+        #endregion Configuration.
+
+        #region Store management products.
 
         public List<Category> GetTheListOfCategory(string uri)
         {
@@ -137,5 +147,41 @@ namespace Store.Management.Application.Services
                 throw new Exception($"Erro: {ex.Message}");
             }
         }
+
+        #endregion Store management products.
+
+        #region Store management login user.
+        public User LoginUser(string uri)
+        {
+            try
+            {
+                using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })
+                {
+                    if (string.IsNullOrEmpty(uri))
+                    {
+                        throw new Exception("Route do not informed.");
+                    }
+
+                    webClient.Headers[HttpRequestHeader.ContentType] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
+
+                    return JsonConvert.DeserializeObject<User>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                }
+            }
+            catch (WebException ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+        }
+        #endregion Store management login user.
+
+        #region Store management registration user.
+
+        #endregion Store management registration user.
     }
 }

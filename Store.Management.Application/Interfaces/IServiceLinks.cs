@@ -7,6 +7,8 @@ namespace Store.Management.Application.Interfaces
     /// </summary>
     public interface IServiceLinks
     {
+        #region Configuration.
+
         /// <summary>
         /// Return the store management uri from Api.
         /// </summary>
@@ -38,6 +40,22 @@ namespace Store.Management.Application.Interfaces
         string? ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId();
 
         /// <summary>
+        /// Return the store management action name login user.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementActionNameLoginUser();
+
+        /// <summary>
+        /// Return the store management action name registration user.
+        /// </summary>
+        /// <returns></returns>
+        string? ReturnStoreManagementActionNameRegistrationUser();
+
+        #endregion Configuration.
+
+        #region Store management products.
+
+        /// <summary>
         /// To obtain the list of object category.
         /// </summary>
         /// <param name="uri"></param>
@@ -57,5 +75,20 @@ namespace Store.Management.Application.Interfaces
         /// <param name="uri"></param>
         /// <returns>he list from object product</returns>
         List<Product> GetTheListOfProductBySubCategoryId(string uri);
+
+        #endregion Store management products.
+
+        #region Store management login user.
+        /// <summary>
+        /// Login User.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        User LoginUser(string uri);
+        #endregion Store management login user.
+
+        #region Store management registration user.
+
+        #endregion Store management registration user.
     }
 }

@@ -3,7 +3,6 @@
     var storeManagementController = "StoreManagement/";
     var actionGetTheListOfSubCategoryByCategoryId = "GetTheListOfSubCategoryByCategoryId";
     var actionGetTheListOfProductBySubCategoryId = "GetTheListOfProductBySubCategoryId";
-    var actionSaveNewItemOfProduct = "SaveNewItemOfProduct";
 
     $('#dpdCategoryName').on("change", () => {
 
@@ -66,14 +65,6 @@
             }
         });
     });
-
-    $('#dpdProduct').on("change", () => {
-        
-    });
-
-    $('#btnSaveNewItemOfProduct').on("click", () => {
-        redirectToAnotherWebPage(`${storeManagementController}${actionSaveNewItemOfProduct}`);
-    });
 });
 
 function initializeView() {
@@ -85,4 +76,5 @@ function initializeView() {
 
     disabledComponent($("#dpdSubCategoryName"));
     disabledComponent($("#dpdProduct"));
+    disabledComponent($("#btnStoreManagement"));
 }
