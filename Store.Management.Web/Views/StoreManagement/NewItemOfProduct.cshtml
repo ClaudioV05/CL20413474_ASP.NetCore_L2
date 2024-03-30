@@ -1,0 +1,31 @@
+﻿@model Store.Management.Web.ViewModels.StoreManagementViewModel
+
+<div class="container">
+    @using (Html.BeginForm("SaveNewItemOfProduct", "StoreManagementWeb"))
+    {
+        if (Model is not null)
+        {
+            <div class="form-row mt-3">
+                <div class="col-4 mt-4">
+                    <label for="Category" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Category Name</label>
+                    @Html.EditorFor(m => m.Category, new { id = "edtCategory", htmlAttributes = new { type = "text", maxlength = 30, required = "true", @class = "form-control form-control-lg", @placeholder = "Category", onChange = "OnChange()" } })
+                </div>
+                <div class="col-4 mt-4">
+                    <label for="SubCategory" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Sub Category Name</label>
+                    @Html.EditorFor(m => m.SubCategory, new { id = "edtSubCategory", htmlAttributes = new { type = "text", maxlength = 30, required = "true", @class = "form-control form-control-lg", @placeholder = "Sub Category" } })
+                </div>
+                <div class="col-4 mt-4">
+                    <label for="Product" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Product Name</label>
+                    @Html.EditorFor(m => m.Product, new { id = "edtProduct", htmlAttributes = new { type = "text", maxlength = 30, required = "true", @class = "form-control form-control-lg", @placeholder = "Product" } })
+                </div>
+            </div>
+            <div class="form-row mt-4 pl-1">
+                <button type="button" class="btn btn-primary" id="btnSaveNewItem" name="btnSaveNewItem">
+                    <span><i class="fas fa-check"></i> Save new product</span>
+                </button>
+            </div>
+        }
+    }
+</div>
+
+@Html.Partial("~/Views/Shared/_ModalInformation.cshtml")

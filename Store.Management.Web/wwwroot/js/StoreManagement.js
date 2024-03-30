@@ -3,6 +3,7 @@
     var storeManagementController = "StoreManagement/";
     var actionGetTheListOfSubCategoryByCategoryId = "GetTheListOfSubCategoryByCategoryId";
     var actionGetTheListOfProductBySubCategoryId = "GetTheListOfProductBySubCategoryId";
+    var actionSaveNewItemOfProduct = "SaveNewItemOfProduct";
 
     $('#dpdCategoryName').on("change", () => {
 
@@ -67,54 +68,15 @@
     });
 
     $('#dpdProduct').on("change", () => {
-        enabledComponent($('#btnSaveNewItem'));
+        
     });
 
-    $('#btnSaveNewItem').on("click", () => {
-        let message = "";
-
-        if ($("#dpdCategoryName option:selected").val() == null || $("#dpdCategoryName option:selected").val() == undefined || $("#dpdCategoryName option:selected").val() == "0") {
-            message = "Category not informed."
-        }
-        else if ($("#dpdSubCategoryName option:selected").val() == null || $("#dpdSubCategoryName option:selected").val() == undefined || $("#dpdSubCategoryName option:selected").val() == "0") {
-            message = "Sub Category not informed."
-        }
-        else if ($("#dpdProduct option:selected").val() == null || $("#dpdProduct option:selected").val() == undefined || $("#dpdProduct option:selected").val() == "0") {
-            message = "Product not informed."
-        }
-
-        if (message == "") {
-            let urlBase = `StoreManagement/Save?value1=${23}`;
-
-            $.ajax({
-                url: urlBase,
-                method: "POST",
-                contentType: "application/json; charset=utf-8",
-                traditional: true,
-                datatype: "JSON",
-                success: (data) => {
-                    console.log(data);
-                },
-                error: (xhr, ajaxOptions, thrownError) => {
-                    modalShow();
-                    modalMessage("Occurred erro!");
-                }
-            });
-        }
-        else {
-            modalShow();
-            modalMessage(message);
-        }
-
-    });
-
-    $('#btnEnabledSaveNewItem').on("click", () => {
-        $("dpdCategoryName").addClass("select-editable");
+    $('#btnSaveNewItemOfProduct').on("click", () => {
+        redirectToAnotherWebPage(`${storeManagementController}${actionSaveNewItemOfProduct}`);
     });
 });
 
 function initializeView() {
-
     $("#dpdSubCategoryName").empty();
     $("#dpdProduct").empty();
 
@@ -123,5 +85,4 @@ function initializeView() {
 
     disabledComponent($("#dpdSubCategoryName"));
     disabledComponent($("#dpdProduct"));
-    disabledComponent($("#btnSaveNewItem"));
 }

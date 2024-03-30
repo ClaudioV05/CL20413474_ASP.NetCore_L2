@@ -29,8 +29,24 @@ namespace Store.Management.Web.Controllers
 
             try
             {
-                this.InitializeView(ref storeManagementViewModel);
+                this.InitializeViewStoreManagement(ref storeManagementViewModel);
                 return View("~/Views/StoreManagement/Index.cshtml", storeManagementViewModel);
+            }
+            catch (Exception)
+            {
+                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
+            }
+        }
+
+        [HttpGet]
+        public IActionResult SaveNewItemOfProduct()
+        {
+            StoreManagementViewModel storeManagementViewModel = new StoreManagementViewModel();
+
+            try
+            {
+                this.InitializeViewStoreManagementNewItemProduct(ref storeManagementViewModel);
+                return View("~/Views/StoreManagement/NewItemOfProduct.cshtml", storeManagementViewModel);
             }
             catch (Exception)
             {
@@ -52,24 +68,14 @@ namespace Store.Management.Web.Controllers
             return Json(lstProducts);
         }
 
-        [HttpPost]
-        public IActionResult SaveNewItemListOfProduct(string product)
-        {
-            // Jesus Cristo.
-            // Claudio Fernandes.
-
-            return View(null);
-        }
-
         #region InitializeView
 
         /// <summary>
-        /// Initialize the view index.
+        /// Initialize the view index (StoreManagement).
         /// </summary>
         /// <param name="storeManagementViewModel"></param>
-        private void InitializeView(ref StoreManagementViewModel storeManagementViewModel)
+        private void InitializeViewStoreManagement(ref StoreManagementViewModel storeManagementViewModel)
         {
-           
             var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
 
             if (storeManagementViewModel is not null)
@@ -90,6 +96,20 @@ namespace Store.Management.Web.Controllers
                         storeManagementViewModel?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(lstCategory[i]?.CategoryID), Text = lstCategory[i]?.CategoryName?.ToString(), Selected = false });
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Initialize the view (StoreManagement) new item of product.
+        /// </summary>
+        /// <param name="storeManagementViewModel"></param>
+        private void InitializeViewStoreManagementNewItemProduct(ref StoreManagementViewModel storeManagementViewModel)
+        {
+            var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+
+            if (storeManagementViewModel is not null)
+            {
+                storeManagementViewModel.InitializeView = false;
             }
         }
 

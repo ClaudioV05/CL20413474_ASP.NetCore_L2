@@ -3,43 +3,40 @@
 <div class="container">
     @using (Html.BeginForm("Index", "StoreManagementWeb"))
     {
-        <div class="form-row mt-3">
-            <div class="col-4 mt-4">
-                <label for="CategoryName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Category Name</label>
-                @if (Model.ListCategory is not null && Model.ListCategory.Any())
-                {
-                    @Html.DropDownList("CategoryName", (IEnumerable<SelectListItem>)Model.ListCategory, new { id = "dpdCategoryName", @class = "form-control form-select-lg", required = "false" })
-                }
+        if (Model is not null)
+        {
+            <div class="form-row mt-3">
+                <div class="col-4 mt-4">
+                    <label for="CategoryName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Category Name</label>
+                    @if (Model.ListCategory is not null && Model.ListCategory.Any())
+                    {
+                        @Html.DropDownList("CategoryName", (IEnumerable<SelectListItem>)Model.ListCategory, new { id = "dpdCategoryName", @class = "form-control form-select-lg", required = "false" })
+                    }
+                </div>
+                <div class="col-4 mt-4">
+                    <label for="SubCategoryName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Sub Category Name</label>
+                    @if (Model.ListSubCategory is not null && Model.ListSubCategory.Any())
+                    {
+                        @Html.DropDownList("SubCategoryName", (IEnumerable<SelectListItem>)Model.ListSubCategory, new { id = "dpdSubCategoryName", @class = "form-control form-select-lg", required = "false" })
+                    }
+                </div>
+                <div class="col-4 mt-4">
+                    <label for="ProductName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Product Name</label>
+                    @if (Model.ListProduct is not null && Model.ListProduct.Any())
+                    {
+                        @Html.DropDownList("ProductName", (IEnumerable<SelectListItem>)Model.ListProduct, new { id = "dpdProduct", @class = "form-control form-select-lg", required = "false" })
+                    }
+                </div>
             </div>
-
-            <div class="col-4 mt-4">
-                <label for="SubCategoryName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Sub Category Name</label>
-                @if (Model.ListSubCategory is not null && Model.ListSubCategory.Any())
-                {
-                    @Html.DropDownList("SubCategoryName", (IEnumerable<SelectListItem>)Model.ListSubCategory, new { id = "dpdSubCategoryName", @class = "form-control form-select-lg", required = "false" })
-                }
+            <div class="form-row mt-4 pl-1">
+                <div class="col-2">
+                    <button type="button" class="btn btn-primary" id="btnSaveNewItemOfProduct" name="btnSaveNewItemOfProduct">
+                        <span><i class="fas fa-check"></i>New Product</span>
+                    </button>
+                </div>
             </div>
-
-            <div class="col-4 mt-4">
-                <label for="ProductName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Product Name</label>
-                @if (Model.ListProduct is not null && Model.ListProduct.Any())
-                {
-                    @Html.DropDownList("ProductName", (IEnumerable<SelectListItem>)Model.ListProduct, new { id = "dpdProduct", @class = "form-control form-select-lg", required = "false" })
-                }
-            </div>
-        </div>
-
-        <div class="form-row mt-4 pl-1">
-            <div class="col-2">
-                <button type="button" class="btn btn-primary" id="btnEnabledSaveNewItem" name="btnEnabledSaveNewItem">
-                    <span id="title-btnEnabledSaveNewItem"><i class="fas fa-check"></i> </span>
-                </button>
-
-                <button type="button" class="btn btn-primary" id="btnSaveNewItem" name="btnSaveNewItem">
-                    <span id="title-btnSaveNewItem"><i class="fas fa-check"></i> Save</span>
-                </button>
-            </div>
-        </div>
+        }
     }
 </div>
+
 @Html.Partial("~/Views/Shared/_ModalInformation.cshtml")
