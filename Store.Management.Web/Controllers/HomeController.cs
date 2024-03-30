@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Store.Management.Application.Interfaces;
+using Store.Management.Domain.Entities;
 using Store.Management.Web.Models;
 using Store.Management.Web.ViewModels;
 
@@ -35,11 +36,11 @@ namespace Store.Management.Web.Controllers
 
         [HttpPost()]
         [ActionName("StoreManagementLoginUser")]
-        public IActionResult StoreManagementLoginUser([FromBody]StoreManagementLoginUserViewModel storeManagementLoginUserViewModel)
+        public IActionResult StoreManagementLoginUser([FromBody] StoreManagementLoginUserViewModel storeManagementLoginUserViewModel)
         {
             try
             {
-                var user = _serviceLinks.LoginUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameLoginUser()}");
+                var user = _serviceLinks.LoginUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameLoginUser()}", new User() { UserID = 1, Name = "Jesus" });
 
                 return View();
             }

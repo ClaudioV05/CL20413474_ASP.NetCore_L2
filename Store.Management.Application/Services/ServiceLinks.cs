@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Store.Management.Application.Interfaces;
 using Store.Management.Domain.Entities;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
@@ -59,6 +60,8 @@ namespace Store.Management.Application.Services
         public string? ReturnStoreManagementActionNameLoginUser() => _configuration["StoreManagementApi:ActionNameLoginUser"];
 
         public string? ReturnStoreManagementActionNameRegistrationUser() => _configuration["StoreManagementApi:ActionNameRegistrationUser"];
+
+        private string? SerializeModel(User user) => JsonConvert.SerializeObject(user);
 
         #endregion Configuration.
 
@@ -151,7 +154,7 @@ namespace Store.Management.Application.Services
         #endregion Store management products.
 
         #region Store management login user.
-        public User LoginUser(string uri)
+        public User LoginUser(string uri, User user)
         {
             try
             {
@@ -166,7 +169,9 @@ namespace Store.Management.Application.Services
                     webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
                     webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
 
-                    return JsonConvert.DeserializeObject<User>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                    var obj = this.SerializeModel(user);
+
+                    return JsonConvert.DeserializeObject<User>(webClient.UploadString(uri, obj), this._jsonSerializerSettings);
                 }
             }
             catch (WebException ex)

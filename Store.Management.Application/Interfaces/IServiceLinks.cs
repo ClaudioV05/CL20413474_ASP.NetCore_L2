@@ -79,12 +79,15 @@ namespace Store.Management.Application.Interfaces
         #endregion Store management products.
 
         #region Store management login user.
+
         /// <summary>
         /// Login User.
         /// </summary>
         /// <param name="uri"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        User LoginUser(string uri);
+        User LoginUser(string uri, User user);
+
         #endregion Store management login user.
 
         #region Store management registration user.

@@ -82,11 +82,11 @@ namespace Store.Management.Api.Controllers
         /// <param name=""></param>
         /// <returns></returns>
         [EnableCors]
-        [HttpGet()]
+        [HttpPost()]
         [Route("LoginUser")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<User>))]
-        public async Task<User> LoginUser()
+        public async Task<User> LoginUser(User user)
         {
             return null;
         }
