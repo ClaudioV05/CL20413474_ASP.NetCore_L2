@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Store.Management.Domain.Entities;
 
 namespace Store.Management.Domain.Entities
 {
@@ -17,6 +18,8 @@ namespace Store.Management.Domain.Entities
         /// <summary>
         /// CategoryName.
         /// </summary>
+        [StringLength(40)]
+        [Column(TypeName = "varchar(40)")]
         public string? CategoryName { get; set; }
     }
 }

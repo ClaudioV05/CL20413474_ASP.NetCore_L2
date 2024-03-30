@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Store.Management.Domain.Entities
 {
@@ -21,6 +22,8 @@ namespace Store.Management.Domain.Entities
         /// <summary>
         /// SubCategoryName.
         /// </summary>
+        [StringLength(40)]
+        [Column(TypeName = "varchar(40)")]
         public string? SubCategoryName { get; set; }
     }
 }
