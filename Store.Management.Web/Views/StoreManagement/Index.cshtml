@@ -7,21 +7,21 @@
         {
             <div class="form-row mt-3">
                 <div class="col-4 mt-4">
-                    <label for="CategoryName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Category Name</label>
+                    @Html.LabelFor(m => m.Category, new { @class = "store-management-label-global" })
                     @if (Model.ListCategory is not null && Model.ListCategory.Any())
                     {
                         @Html.DropDownList("CategoryName", (IEnumerable<SelectListItem>)Model.ListCategory, new { id = "dpdCategoryName", @class = "form-control form-select-lg", required = "false" })
                     }
                 </div>
                 <div class="col-4 mt-4">
-                    <label for="SubCategoryName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Sub Category Name</label>
+                    @Html.LabelFor(m => m.SubCategory, new { @class = "store-management-label-global" })
                     @if (Model.ListSubCategory is not null && Model.ListSubCategory.Any())
                     {
                         @Html.DropDownList("SubCategoryName", (IEnumerable<SelectListItem>)Model.ListSubCategory, new { id = "dpdSubCategoryName", @class = "form-control form-select-lg", required = "false" })
                     }
                 </div>
                 <div class="col-4 mt-4">
-                    <label for="ProductName" class="floatingInputValue text-left text-uppercase font-weight-bold h6">Product Name</label>
+                    @Html.LabelFor(m => m.Product, new { @class = "store-management-label-global" })
                     @if (Model.ListProduct is not null && Model.ListProduct.Any())
                     {
                         @Html.DropDownList("ProductName", (IEnumerable<SelectListItem>)Model.ListProduct, new { id = "dpdProduct", @class = "form-control form-select-lg", required = "false" })
@@ -30,8 +30,8 @@
             </div>
             <div class="form-row mt-4 pl-1">
                 <div class="col-2">
-                    <button type="button" class="btn btn-primary" id="btnSaveNewItemOfProduct" name="btnSaveNewItemOfProduct">
-                        <span><i class="fas fa-check"></i>New Product</span>
+                    <button type="button" class="btn btn-outline-secondary btn-lg" id="btnStoreManagement" name="btnStoreManagement">
+                        <span id="idSpanStoreManagement"><i class="fas fa-check"></i>Submit</span>
                     </button>
                 </div>
             </div>

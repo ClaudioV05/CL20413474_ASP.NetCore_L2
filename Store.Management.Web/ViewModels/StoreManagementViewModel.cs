@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace Store.Management.Web.ViewModels
 {
@@ -8,23 +9,21 @@ namespace Store.Management.Web.ViewModels
     public class StoreManagementViewModel
     {
         /// <summary>
-        /// Initialize the view.
-        /// </summary>
-        public bool InitializeView { get; set; }
-
-        /// <summary>
         /// Product.
         /// </summary>
+        [Display(Name = "Product Name")]
         public string? Product { get; set; }
 
         /// <summary>
         /// Category.
         /// </summary>
+        [Display(Name = "Category Name")]
         public string? Category { get; set; }
 
         /// <summary>
         /// SubCategory.
         /// </summary>
+        [Display(Name = "Sub Category Name")]
         public string? SubCategory { get; set; }
 
         /// <summary>
@@ -44,7 +43,6 @@ namespace Store.Management.Web.ViewModels
 
         public StoreManagementViewModel()
         {
-            this.InitializeView = true;
             this.ListProduct = new List<SelectListItem>();
             this.ListCategory = new List<SelectListItem>();
             this.ListSubCategory = new List<SelectListItem>();

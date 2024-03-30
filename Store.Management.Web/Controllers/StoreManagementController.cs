@@ -39,22 +39,6 @@ namespace Store.Management.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult SaveNewItemOfProduct()
-        {
-            StoreManagementViewModel storeManagementViewModel = new StoreManagementViewModel();
-
-            try
-            {
-                this.InitializeViewStoreManagementNewItemProduct(ref storeManagementViewModel);
-                return View("~/Views/StoreManagement/NewItemOfProduct.cshtml", storeManagementViewModel);
-            }
-            catch (Exception)
-            {
-                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
-            }
-        }
-
-        [HttpGet]
         public JsonResult GetTheListOfSubCategoryByCategoryId(int id)
         {
             var lstSubCategory = _serviceLinks.GetTheListOfSubCategoryByCategoryId($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId()}/{id}");
@@ -96,20 +80,6 @@ namespace Store.Management.Web.Controllers
                         storeManagementViewModel?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(lstCategory[i]?.CategoryID), Text = lstCategory[i]?.CategoryName?.ToString(), Selected = false });
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        /// Initialize the view (StoreManagement) new item of product.
-        /// </summary>
-        /// <param name="storeManagementViewModel"></param>
-        private void InitializeViewStoreManagementNewItemProduct(ref StoreManagementViewModel storeManagementViewModel)
-        {
-            var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
-
-            if (storeManagementViewModel is not null)
-            {
-                storeManagementViewModel.InitializeView = false;
             }
         }
 
