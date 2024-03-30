@@ -13,11 +13,11 @@ namespace Store.Management.Application.Services
             _repositorySubCategory = repositorySubCategory;
         }
 
-        public IEnumerable<SubCategory> GetListOfSubCategory()
+        public async Task<IEnumerable<SubCategory>> GetListOfSubCategory()
         {
             try
             {
-                var listOfSubCategory = _repositorySubCategory.GetListOfSubCategory();
+                var listOfSubCategory = await _repositorySubCategory.GetListOfSubCategory();
 
                 return (from subCategory
                         in listOfSubCategory
@@ -30,11 +30,11 @@ namespace Store.Management.Application.Services
             }
         }
 
-        public IEnumerable<SubCategory> GetTheListOfSubCategoryByCategoryId(int id)
+        public async Task<IEnumerable<SubCategory>> GetTheListOfSubCategoryByCategoryId(int id)
         {
             try
             {
-                var listOfSubCategory = _repositorySubCategory.GetListOfSubCategory();
+                var listOfSubCategory = await _repositorySubCategory.GetListOfSubCategory();
 
                 return (from subCategory
                         in listOfSubCategory

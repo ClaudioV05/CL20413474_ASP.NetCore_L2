@@ -1,4 +1,5 @@
-﻿using Store.Management.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using Store.Management.Domain.Entities;
 using Store.Management.Domain.Interfaces;
 using Store.Management.Infrastructure.Data.Context;
 
@@ -20,6 +21,6 @@ namespace Store.Management.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<Category> GetTheListOfCategory() => _context?.Category?.ToList();
+        public async Task<IEnumerable<Category>> GetTheListOfCategory() => await _context?.Category?.AsNoTracking().ToListAsync();
     }
 }

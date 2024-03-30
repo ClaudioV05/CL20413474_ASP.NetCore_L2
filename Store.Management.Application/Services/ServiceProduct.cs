@@ -13,11 +13,11 @@ namespace Store.Management.Application.Services
             _repositoryProduct = repositoryProduct;
         }
 
-        public IEnumerable<Product> GetTheListOfProduct()
+        public async Task<IEnumerable<Product>> GetTheListOfProduct()
         {
             try
             {
-                var listOfProduct = _repositoryProduct.GetTheListOfProduct();
+                var listOfProduct = await _repositoryProduct.GetTheListOfProduct();
 
                 return (from product
                         in listOfProduct
@@ -30,11 +30,11 @@ namespace Store.Management.Application.Services
             }
         }
 
-        public IEnumerable<Product> GetTheListOfProductBySubCategoryId(int id)
+        public async Task<IEnumerable<Product>> GetTheListOfProductBySubCategoryId(int id)
         {
             try
             {
-                var listOfProduct = _repositoryProduct.GetTheListOfProduct();
+                var listOfProduct = await _repositoryProduct.GetTheListOfProduct();
 
                 return (from product
                         in listOfProduct

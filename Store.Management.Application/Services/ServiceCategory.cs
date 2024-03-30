@@ -13,11 +13,11 @@ namespace Store.Management.Application.Services
             _repositoryCategory = repositoryCategory;
         }
 
-        public IEnumerable<Category> GetTheListOfCategory()
+        public async Task<IEnumerable<Category>> GetTheListOfCategory()
         {
             try
             {
-                var listOfCategory = _repositoryCategory.GetTheListOfCategory();
+                var listOfCategory = await _repositoryCategory.GetTheListOfCategory();
 
                 return (from category
                         in listOfCategory

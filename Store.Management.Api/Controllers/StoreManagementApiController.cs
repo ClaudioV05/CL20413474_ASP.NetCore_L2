@@ -41,9 +41,9 @@ namespace Store.Management.Api.Controllers
         [Route("GetTheListOfCategory")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Category>))]
-        public IEnumerable<Category> GetTheListOfCategory()
+        public async Task<IEnumerable<Category>> GetTheListOfCategory()
         {
-            return _serviceCategory.GetTheListOfCategory();
+            return await _serviceCategory.GetTheListOfCategory();
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Store.Management.Api.Controllers
         [Route("GetTheListOfSubCategoryByCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SubCategory>))]
-        public IEnumerable<SubCategory> GetTheListOfSubCategoryByCategoryId(int id)
+        public async Task<IEnumerable<SubCategory>> GetTheListOfSubCategoryByCategoryId(int id)
         {
-            return _serviceSubCategory.GetTheListOfSubCategoryByCategoryId(id);
+            return await _serviceSubCategory.GetTheListOfSubCategoryByCategoryId(id);
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Store.Management.Api.Controllers
         [Route("GetTheListOfProductBySubCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Product>))]
-        public IEnumerable<Product> GetTheListOfProductBySubCategoryId(int id)
+        public async Task<IEnumerable<Product>> GetTheListOfProductBySubCategoryId(int id)
         {
-            return _serviceProduct.GetTheListOfProductBySubCategoryId(id);
+            return await _serviceProduct.GetTheListOfProductBySubCategoryId(id);
         }
     }
 }
