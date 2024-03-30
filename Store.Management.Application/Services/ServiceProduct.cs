@@ -17,10 +17,10 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listOfProduct = await _repositoryProduct.GetTheListOfProduct();
+                var listItems = await _repositoryProduct.GetTheListOfProduct();
 
                 return (from product
-                        in listOfProduct
+                        in listItems
                         where product.ProductID > 0
                         select product).ToList();
             }
@@ -34,10 +34,10 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listOfProduct = await _repositoryProduct.GetTheListOfProduct();
+                var listItems = await _repositoryProduct.GetTheListOfProduct();
 
                 return (from product
-                        in listOfProduct
+                        in listItems
                         where product.ProductID > 0
                         && product.SubCategoryID.Equals(id)
                         select product).ToList();

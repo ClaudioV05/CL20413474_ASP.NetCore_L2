@@ -17,10 +17,10 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listOfCategory = await _repositoryCategory.GetTheListOfCategory();
+                var listItems = await _repositoryCategory.GetTheListOfCategory();
 
                 return (from category
-                        in listOfCategory
+                        in listItems
                         where category.CategoryID > 0
                         select category).ToList();
             }

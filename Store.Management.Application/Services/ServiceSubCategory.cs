@@ -17,10 +17,10 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listOfSubCategory = await _repositorySubCategory.GetListOfSubCategory();
+                var listItems = await _repositorySubCategory.GetListOfSubCategory();
 
                 return (from subCategory
-                        in listOfSubCategory
+                        in listItems
                         where subCategory.CategoryID > 0
                         select subCategory).ToList();
             }
@@ -34,10 +34,10 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listOfSubCategory = await _repositorySubCategory.GetListOfSubCategory();
+                var listItems = await _repositorySubCategory.GetListOfSubCategory();
 
                 return (from subCategory
-                        in listOfSubCategory
+                        in listItems
                         where subCategory.CategoryID > 0
                         && subCategory.CategoryID.Equals(id)
                         select subCategory).ToList();
