@@ -40,7 +40,7 @@ namespace Store.Management.Infrastructure.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connection = _configuration["ConnectionStrings:DatabaseConnection"];
-            optionsBuilder.UseSqlServer(connection, b => b.MigrationsAssembly("Store.Management.Api"));
+            optionsBuilder.UseSqlServer(connection, ef => ef.MigrationsAssembly("Store.Management.Api"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

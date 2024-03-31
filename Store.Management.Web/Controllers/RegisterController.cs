@@ -9,7 +9,14 @@ namespace Store.Management.Web.Controllers
 
         }
 
+        [ActionName("Register")]
         public IActionResult Register()
+        {
+            return View();
+        }
+
+        [ActionName("fj.")]
+        public IActionResult Registerr()
         {
             return View();
         }
