@@ -23,9 +23,10 @@
                 data: storeManagementRegisterNewUser,
                 datatype: "JSON",
                 success: (data) => {
-                    console.log(data);
+                    redirectToAnotherWebPage(`${storeManagementRegisterController}${actionStoreManagementLoginUserIndex}`);
                 },
                 error: (xhr, ajaxOptions, thrownError) => {
+                    console.log(xhr.responseText);
                     modalShow();
                     modalMessage("Occurred erro!");
                 }

@@ -3,7 +3,7 @@
 namespace Store.Management.Application.Interfaces
 {
     /// <summary>
-    /// Interface IServiceUser.
+    /// Interface IServiceUsers.
     /// </summary>
     public interface IServiceUsers
     {
@@ -13,5 +13,12 @@ namespace Store.Management.Application.Interfaces
         /// <param name="user"></param>
         /// <returns></returns>
         Task RegisterUser(User user);
+
+        /// <summary>
+        /// Login user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Task LoginUser(User user);
     }
 }

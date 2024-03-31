@@ -24,5 +24,17 @@ namespace Store.Management.Application.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task LoginUser(User user)
+        {
+            try
+            {
+                await _repositoryUsers.LoginUser(user);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

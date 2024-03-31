@@ -86,7 +86,7 @@ namespace Store.Management.Application.Interfaces
         /// <param name="uri"></param>
         /// <param name="user"></param>
         /// <returns></returns>
-        User LoginUser(string uri, User user);
+        void LoginUser(string uri, User user);
 
         #endregion Store management login user.
 

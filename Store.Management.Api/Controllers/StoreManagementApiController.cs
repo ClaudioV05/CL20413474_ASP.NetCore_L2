@@ -13,31 +13,31 @@ namespace Store.Management.Api.Controllers
     [Route("[controller]")]
     public class StoreManagementApiController : ControllerBase
     {
-        private readonly IServiceCategories _serviceCategory;
-        private readonly IServiceSubCategories _serviceSubCategory;
-        private readonly IServiceProducts _serviceProduct;
-        private readonly IServiceUsers _serviceUser;
+        private readonly IServiceCategories _serviceCategories;
+        private readonly IServiceSubCategories _serviceSubCategories;
+        private readonly IServiceProducts _serviceProducts;
+        private readonly IServiceUsers _serviceUsers;
 
         /// <summary>
         /// StoreManagementApiController.
         /// </summary>
-        /// <param name="serviceCategory"></param>
-        /// <param name="serviceSubCategory"></param>
-        /// <param name="serviceProduct"></param>
-        /// <param name="serviceUser"></param>
-        public StoreManagementApiController(IServiceCategories serviceCategory,
-                                            IServiceSubCategories serviceSubCategory,
-                                            IServiceProducts serviceProduct,
-                                            IServiceUsers serviceUser)
+        /// <param name="serviceCategories"></param>
+        /// <param name="serviceSubCategories"></param>
+        /// <param name="serviceProducts"></param>
+        /// <param name="serviceUsers"></param>
+        public StoreManagementApiController(IServiceCategories serviceCategories,
+                                            IServiceSubCategories serviceSubCategories,
+                                            IServiceProducts serviceProducts,
+                                            IServiceUsers serviceUsers)
         {
-            _serviceCategory = serviceCategory;
-            _serviceSubCategory = serviceSubCategory;
-            _serviceProduct = serviceProduct;
-            _serviceUser = serviceUser;
+            _serviceCategories = serviceCategories;
+            _serviceSubCategories = serviceSubCategories;
+            _serviceProducts = serviceProducts;
+            _serviceUsers = serviceUsers;
         }
 
         /// <summary>
-        /// Obtain all list of category.
+        /// Obtain all list of categories.
         /// </summary>
         /// <returns></returns>
         [EnableCors]
@@ -47,13 +47,13 @@ namespace Store.Management.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Categories>>))]
         public async Task<IEnumerable<Categories>> GetTheListOfCategory()
         {
-            return await _serviceCategory.GetTheListOfCategories();
+            return await _serviceCategories.GetTheListOfCategories();
         }
 
         /// <summary>
         /// Obtain list of sub category by id.
         /// </summary>
-        /// <param name="categoryID"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [EnableCors]
         [HttpGet()]
@@ -62,7 +62,7 @@ namespace Store.Management.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<SubCategories>>))]
         public async Task<IEnumerable<SubCategories>> GetTheListOfSubCategoryByCategoryId(int id)
         {
-            return await _serviceSubCategory.GetTheListOfSubCategoryByCategoryId(id);
+            return await _serviceSubCategories.GetTheListOfSubCategoryByCategoryId(id);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Store.Management.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Products>>))]
         public async Task<IEnumerable<Products>> GetTheListOfProductBySubCategoryId(int id)
         {
-            return await _serviceProduct.GetTheListOfProductBySubCategoryId(id);
+            return await _serviceProducts.GetTheListOfProductBySubCategoryId(id);
         }
 
         /// <summary>
@@ -89,12 +89,34 @@ namespace Store.Management.Api.Controllers
         [HttpPost()]
         [Route("RegisterUser")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<User>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task))]
         public async Task RegisterUser(User user)
         {
             try
             {
-                await _serviceUser.RegisterUser(user);
+                await _serviceUsers.RegisterUser(user);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Login user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [EnableCors]
+        [HttpPost()]
+        [Route("LoginUser")]
+        [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task))]
+        public async Task LoginUser(User user)
+        {
+            try
+            {
+                await _serviceUsers.LoginUser(user);
             }
             catch (Exception ex)
             {

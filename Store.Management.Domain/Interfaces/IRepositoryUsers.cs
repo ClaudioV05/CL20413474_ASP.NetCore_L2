@@ -13,5 +13,12 @@ namespace Store.Management.Domain.Interfaces
         /// <param name="user"></param>
         /// <returns></returns>
         Task RegisterUser(User user);
+
+        /// <summary>
+        /// Login user.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Task LoginUser(User user);
     }
 }

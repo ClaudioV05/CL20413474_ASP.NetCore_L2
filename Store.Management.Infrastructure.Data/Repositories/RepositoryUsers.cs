@@ -51,5 +51,22 @@ namespace Store.Management.Infrastructure.Data.Repositories
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task LoginUser(User user)
+        {
+            try
+            {
+                var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, false, false);
+
+                if (!result.Succeeded)
+                {
+                    throw new Exception("User don't registred.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

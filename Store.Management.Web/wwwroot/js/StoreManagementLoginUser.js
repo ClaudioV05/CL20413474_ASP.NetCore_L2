@@ -2,9 +2,10 @@
     var storeManagementLoginUserController = "Home/";
     var storeManagementRegisterController = "Register/";
     var actionStoreManagementLoginUser = "StoreManagementLoginUser";
+    var actionStoreManagementLoginUserIndex = "Index";
 
     $('#btnRegister').on("click", () => {
-        redirectToAnotherWebPage(`${storeManagementRegisterController}Register`);
+        redirectToAnotherWebPage(`${storeManagementRegisterController}${actionStoreManagementLoginUserIndex}`);
     });
 
     $('#btnLogin').on("click", () => {
@@ -15,8 +16,9 @@
             let urlBase = `${storeManagementLoginUserController}${actionStoreManagementLoginUser}`;
 
             let storeManagementLoginUser = JSON.stringify({
-                Username: $('#edtUserName').val(),
-                Password: $('#edtPassword').val()
+                Email: $('#edtEmail').val(),
+                Password: $('#edtPassword').val(),
+                RememberMe: $('#chkRememberMe').val()
             });
 
             $.ajax({
@@ -45,8 +47,8 @@
 function validateLogin() {
     let mensagem = "";
 
-    if ($('#edtUserName').val() == null || $('#edtUserName').val() == undefined || $('#edtUserName').val() == "") {
-        mensagem = "The username don't informed.";
+    if ($('#edtEmail').val() == null || $('#edtEmail').val() == undefined || $('#edtEmail').val() == "") {
+        mensagem = "The email don't informed.";
     } else if ($('#edtPassword').val() == null || $('#edtPassword').val() == undefined || $('#edtPassword').val() == "") {
         mensagem = "The password don't informed.";
     }

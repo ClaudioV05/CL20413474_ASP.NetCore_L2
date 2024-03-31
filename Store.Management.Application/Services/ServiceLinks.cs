@@ -154,7 +154,7 @@ namespace Store.Management.Application.Services
 
         #region Store management login user.
 
-        public User LoginUser(string uri, User user)
+        public void LoginUser(string uri, User user)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace Store.Management.Application.Services
 
                     var obj = this.SerializeModel(user);
 
-                    return JsonConvert.DeserializeObject<User>(webClient.UploadString(uri, obj), this._jsonSerializerSettings);
+                    webClient.UploadString(uri, obj);
                 }
             }
             catch (WebException ex)
