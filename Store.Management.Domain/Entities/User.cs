@@ -7,6 +7,7 @@ namespace Store.Management.Domain.Entities
     /// <summary>
     /// User.
     /// </summary>
+    [NotMapped]
     public class User
     {
         [Key]

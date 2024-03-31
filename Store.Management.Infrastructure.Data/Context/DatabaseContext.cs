@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Store.Management.Domain.Entities;
 
@@ -7,7 +8,7 @@ namespace Store.Management.Infrastructure.Data.Context
     /// <summary>
     /// DatabaseContext.
     /// </summary>
-    public class DatabaseContext : DbContext
+    public class DatabaseContext : IdentityDbContext
     {
         private readonly IConfiguration _configuration;
 
@@ -16,8 +17,7 @@ namespace Store.Management.Infrastructure.Data.Context
         /// </summary>
         /// <param name="options"></param>
         /// <param name="configuration"></param>
-        public DatabaseContext(DbContextOptions<DatabaseContext> options,
-                               IConfiguration configuration) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options, IConfiguration configuration) : base(options)
         {
             _configuration = configuration;
         }
@@ -40,7 +40,12 @@ namespace Store.Management.Infrastructure.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connection = _configuration["ConnectionStrings:DatabaseConnection"];
-            optionsBuilder.UseSqlServer(connection);
+            optionsBuilder.UseSqlServer(connection, b => b.MigrationsAssembly("Store.Management.Api"));
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

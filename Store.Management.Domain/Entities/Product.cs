@@ -6,6 +6,7 @@ namespace Store.Management.Domain.Entities
     /// <summary>
     /// Product.
     /// </summary>
+    [NotMapped]
     public class Product
     {
         /// <summary>

@@ -7,6 +7,7 @@ namespace Store.Management.Domain.Entities
     /// <summary>
     /// Category.
     /// </summary>
+    [NotMapped]
     public class Category
     {
         /// <summary>
