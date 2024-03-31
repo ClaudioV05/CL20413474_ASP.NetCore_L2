@@ -10,7 +10,7 @@
             initializeView();
         }
         else {
-            let urlBase = `${storeManagementController}${actionGetTheListOfSubCategoryByCategoryId}?id=${$("#dpdCategoryName option:selected").val()}`;
+            let urlBase = `${actionGetTheListOfSubCategoryByCategoryId}?id=${$("#dpdCategoryName option:selected").val()}`;
 
             $.ajax({
                 url: urlBase,
@@ -38,7 +38,7 @@
     });
 
     $('#dpdSubCategoryName').on("change", () => {
-        let urlBase = `${storeManagementController}${actionGetTheListOfProductBySubCategoryId}?id=${$("#dpdSubCategoryName option:selected").val()}`;
+        let urlBase = `${actionGetTheListOfProductBySubCategoryId}?id=${$("#dpdSubCategoryName option:selected").val()}`;
 
         $.ajax({
             url: urlBase,
@@ -55,8 +55,6 @@
                     $.each(result, (i, product) => {
                         $("#dpdProduct").append($("<option>", { value: product.productID, text: product.productName }));
                     });
-
-
                 }
             },
             error: (xhr, ajaxOptions, thrownError) => {

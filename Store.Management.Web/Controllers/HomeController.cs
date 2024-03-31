@@ -48,7 +48,7 @@ namespace Store.Management.Web.Controllers
                    Password = storeManagementLoginUserViewModel.Password
                });
 
-                return RedirectToRoute(new { controller = "StoreManagement", action = "GetTheListOfCategory" });
+                return RedirectToRoute(new { controller = "StoreManagement", action = "Index" });
             }
             catch (Exception)
             {

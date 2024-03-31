@@ -29,7 +29,7 @@
                 data: storeManagementLoginUser,
                 datatype: "JSON",
                 success: (data) => {
-                    console.log(data);
+                    redirectToAnotherWebPage("StoreManagement/Index");
                 },
                 error: (xhr, ajaxOptions, thrownError) => {
                     modalShow();
