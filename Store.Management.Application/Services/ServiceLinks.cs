@@ -66,7 +66,7 @@ namespace Store.Management.Application.Services
 
         #region Store management products.
 
-        public List<Category> GetTheListOfCategory(string uri)
+        public List<Categories> GetTheListOfCategory(string uri)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace Store.Management.Application.Services
                     webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
                     webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
 
-                    return JsonConvert.DeserializeObject<List<Category>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                    return JsonConvert.DeserializeObject<List<Categories>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
                 }
             }
             catch (WebException ex)
@@ -94,7 +94,7 @@ namespace Store.Management.Application.Services
             }
         }
 
-        public List<SubCategory> GetTheListOfSubCategoryByCategoryId(string uri)
+        public List<SubCategories> GetTheListOfSubCategoryByCategoryId(string uri)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace Store.Management.Application.Services
                     webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
                     webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
 
-                    return JsonConvert.DeserializeObject<List<SubCategory>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                    return JsonConvert.DeserializeObject<List<SubCategories>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
                 }
             }
             catch (WebException ex)
@@ -122,7 +122,7 @@ namespace Store.Management.Application.Services
             }
         }
 
-        public List<Product> GetTheListOfProductBySubCategoryId(string uri)
+        public List<Products> GetTheListOfProductBySubCategoryId(string uri)
         {
             try
             {
@@ -137,7 +137,7 @@ namespace Store.Management.Application.Services
                     webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
                     webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
 
-                    return JsonConvert.DeserializeObject<List<Product>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
+                    return JsonConvert.DeserializeObject<List<Products>>(webClient.DownloadString(uri), this._jsonSerializerSettings);
                 }
             }
             catch (WebException ex)

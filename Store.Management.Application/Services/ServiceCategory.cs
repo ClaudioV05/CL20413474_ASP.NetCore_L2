@@ -13,7 +13,7 @@ namespace Store.Management.Application.Services
             _repositoryCategory = repositoryCategory;
         }
 
-        public async Task<IEnumerable<Category>> GetTheListOfCategory()
+        public async Task<IEnumerable<Categories>> GetTheListOfCategory()
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return Enumerable.Empty<Category>();
+                return Enumerable.Empty<Categories>();
             }
         }
     }

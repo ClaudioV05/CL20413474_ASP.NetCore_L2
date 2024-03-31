@@ -25,17 +25,17 @@ namespace Store.Management.Infrastructure.Data.Context
         /// <summary>
         /// Product.
         /// </summary>
-        public DbSet<Product>? Products { get; set; }
+        public DbSet<Products>? Products { get; set; }
 
         /// <summary>
         /// Category.
         /// </summary>
-        public DbSet<Category>? Categories { get; set; }
+        public DbSet<Categories>? Categories { get; set; }
 
         /// <summary>
         /// SubCategory.
         /// </summary>
-        public DbSet<SubCategory>? SubCategories { get; set; }
+        public DbSet<SubCategories>? SubCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,20 +45,20 @@ namespace Store.Management.Infrastructure.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().HasData(new List<Category>(){new Category()
+            modelBuilder.Entity<Categories>().HasData(new List<Categories>(){new Categories()
             { 
                 CategoryID = 1,
                 CategoryName = "Mobile"
             }});
 
-            modelBuilder.Entity<SubCategory>().HasData(new List<SubCategory>(){new SubCategory()
+            modelBuilder.Entity<SubCategories>().HasData(new List<SubCategories>(){new SubCategories()
             {
                 SubCategoryID = 1,
                 CategoryID = 1,
                 SubCategoryName = "Motorola"
             }});
 
-            modelBuilder.Entity<Product>().HasData(new List<Product>(){new Product()
+            modelBuilder.Entity<Products>().HasData(new List<Products>(){new Products()
             { 
                 ProductID = 1,
                 SubCategoryID = 1,

@@ -13,7 +13,7 @@ namespace Store.Management.Application.Services
             _repositorySubCategory = repositorySubCategory;
         }
 
-        public async Task<IEnumerable<SubCategory>> GetListOfSubCategory()
+        public async Task<IEnumerable<SubCategories>> GetListOfSubCategory()
         {
             try
             {
@@ -26,11 +26,11 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return Enumerable.Empty<SubCategory>();
+                return Enumerable.Empty<SubCategories>();
             }
         }
 
-        public async Task<IEnumerable<SubCategory>> GetTheListOfSubCategoryByCategoryId(int id)
+        public async Task<IEnumerable<SubCategories>> GetTheListOfSubCategoryByCategoryId(int id)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return Enumerable.Empty<SubCategory>();
+                return Enumerable.Empty<SubCategories>();
             }
         }
     }

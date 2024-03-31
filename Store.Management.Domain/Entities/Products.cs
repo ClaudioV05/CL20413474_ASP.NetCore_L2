@@ -4,29 +4,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Store.Management.Domain.Entities
 {
     /// <summary>
-    /// SubCategory.
+    /// Products.
     /// </summary>
-    //[NotMapped]
-    public class SubCategory
+    [Table("Products", Schema = "dbo")]
+    public class Products
     {
+        /// <summary>
+        /// ProductID.
+        /// </summary>
+        [Key]
+        [Required]
+        public long ProductID { get; set; }
+
         /// <summary>
         /// SubCategoryID.
         /// </summary>
-        [Key]
         [Required]
         public long SubCategoryID { get; set; }
 
         /// <summary>
-        /// CategoryID.
-        /// </summary>
-        public long CategoryID { get; set; }
-
-        /// <summary>
-        /// SubCategoryName.
+        /// ProductName.
         /// </summary>
         [StringLength(40)]
         [Column(TypeName = "varchar(40)")]
         [Required(AllowEmptyStrings = false)]
-        public string? SubCategoryName { get; set; }
+        public string? ProductName { get; set; }
     }
 }

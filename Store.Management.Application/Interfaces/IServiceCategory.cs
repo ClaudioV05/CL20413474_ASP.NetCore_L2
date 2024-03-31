@@ -11,6 +11,6 @@ namespace Store.Management.Application.Interfaces
         /// To obtain the list of category.
         /// </summary>
         /// <returns>The list of category.</returns>
-       Task<IEnumerable<Category>> GetTheListOfCategory();
+       Task<IEnumerable<Categories>> GetTheListOfCategory();
     }
 }

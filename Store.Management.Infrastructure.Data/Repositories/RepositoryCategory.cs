@@ -21,6 +21,6 @@ namespace Store.Management.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Category>> GetTheListOfCategory() => await _context?.Categories?.AsNoTracking().ToListAsync();
+        public async Task<IEnumerable<Categories>> GetTheListOfCategory() => await _context?.Categories?.AsNoTracking().ToListAsync();
     }
 }

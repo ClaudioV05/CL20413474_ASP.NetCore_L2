@@ -11,13 +11,13 @@ namespace Store.Management.Application.Interfaces
         /// To obtain the list of product.
         /// </summary>
         /// <returns>The list of product.</returns>
-        Task<IEnumerable<Product>> GetTheListOfProduct();
+        Task<IEnumerable<Products>> GetTheListOfProduct();
 
         /// <summary>
         /// To obtain the list of product by sub category id.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<IEnumerable<Product>> GetTheListOfProductBySubCategoryId(int id);
+        Task<IEnumerable<Products>> GetTheListOfProductBySubCategoryId(int id);
     }
 }

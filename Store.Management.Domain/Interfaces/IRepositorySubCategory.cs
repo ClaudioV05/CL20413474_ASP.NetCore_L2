@@ -11,6 +11,6 @@ namespace Store.Management.Domain.Interfaces
         /// To obtain list of sub category.
         /// </summary>
         /// <returns>The list of sub category.</returns>
-        Task<IEnumerable<SubCategory>> GetListOfSubCategory();
+        Task<IEnumerable<SubCategories>> GetListOfSubCategory();
     }
 }

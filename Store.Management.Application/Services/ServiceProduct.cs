@@ -13,7 +13,7 @@ namespace Store.Management.Application.Services
             _repositoryProduct = repositoryProduct;
         }
 
-        public async Task<IEnumerable<Product>> GetTheListOfProduct()
+        public async Task<IEnumerable<Products>> GetTheListOfProduct()
         {
             try
             {
@@ -26,11 +26,11 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return Enumerable.Empty<Product>();
+                return Enumerable.Empty<Products>();
             }
         }
 
-        public async Task<IEnumerable<Product>> GetTheListOfProductBySubCategoryId(int id)
+        public async Task<IEnumerable<Products>> GetTheListOfProductBySubCategoryId(int id)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception)
             {
-                return Enumerable.Empty<Product>();
+                return Enumerable.Empty<Products>();
             }
         }
     }

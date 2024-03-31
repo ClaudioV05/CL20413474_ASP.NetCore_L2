@@ -60,21 +60,21 @@ namespace Store.Management.Application.Interfaces
         /// </summary>
         /// <param name="uri"></param>
         /// <returns>The list from object category</returns>
-        List<Category> GetTheListOfCategory(string uri);
+        List<Categories> GetTheListOfCategory(string uri);
 
         /// <summary>
         /// To obtain the list of object sub category.
         /// </summary>
         /// <param name="uri"></param>
         /// <returns>The list from object sub category</returns>
-        List<SubCategory> GetTheListOfSubCategoryByCategoryId(string uri);
+        List<SubCategories> GetTheListOfSubCategoryByCategoryId(string uri);
 
         /// <summary>
         /// To obtain the list of product by sub category id.
         /// </summary>
         /// <param name="uri"></param>
         /// <returns>he list from object product</returns>
-        List<Product> GetTheListOfProductBySubCategoryId(string uri);
+        List<Products> GetTheListOfProductBySubCategoryId(string uri);
 
         #endregion Store management products.
 

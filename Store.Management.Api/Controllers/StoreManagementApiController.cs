@@ -44,8 +44,8 @@ namespace Store.Management.Api.Controllers
         [HttpGet()]
         [Route("GetTheListOfCategory")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Category>>))]
-        public async Task<IEnumerable<Category>> GetTheListOfCategory()
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Categories>>))]
+        public async Task<IEnumerable<Categories>> GetTheListOfCategory()
         {
             return await _serviceCategory.GetTheListOfCategory();
         }
@@ -59,8 +59,8 @@ namespace Store.Management.Api.Controllers
         [HttpGet()]
         [Route("GetTheListOfSubCategoryByCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<SubCategory>>))]
-        public async Task<IEnumerable<SubCategory>> GetTheListOfSubCategoryByCategoryId(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<SubCategories>>))]
+        public async Task<IEnumerable<SubCategories>> GetTheListOfSubCategoryByCategoryId(int id)
         {
             return await _serviceSubCategory.GetTheListOfSubCategoryByCategoryId(id);
         }
@@ -74,8 +74,8 @@ namespace Store.Management.Api.Controllers
         [HttpGet()]
         [Route("GetTheListOfProductBySubCategoryId/{id}")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Product>>))]
-        public async Task<IEnumerable<Product>> GetTheListOfProductBySubCategoryId(int id)
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Products>>))]
+        public async Task<IEnumerable<Products>> GetTheListOfProductBySubCategoryId(int id)
         {
             return await _serviceProduct.GetTheListOfProductBySubCategoryId(id);
         }

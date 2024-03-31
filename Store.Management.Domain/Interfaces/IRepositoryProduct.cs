@@ -11,6 +11,6 @@ namespace Store.Management.Domain.Interfaces
         /// To obtain the list of product.
         /// </summary>
         /// <returns>The list of product.</returns>
-        Task<IEnumerable<Product>> GetTheListOfProduct();
+        Task<IEnumerable<Products>> GetTheListOfProduct();
     }
 }
