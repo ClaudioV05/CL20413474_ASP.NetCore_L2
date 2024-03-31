@@ -61,9 +61,9 @@ namespace Store.Management.Infrastructure.Data.Context
 
             modelBuilder.Entity<Products>().HasData(new List<Products>()
             {
-                new () { ProductID = 1, SubCategoryID = 1, ProductName = "Moto E3 Power (Black, 16 GB)", Quantity = 4 },
-                new () { ProductID = 2, SubCategoryID = 2, ProductName = "Mackbook Pro", Quantity = 6 },
-                new () { ProductID = 3, SubCategoryID = 3, ProductName = "Galaxy Watch 6", Quantity = 1 }
+                new () { ProductID = 1, SubCategoryID = 1, Quantity = 4, ProductName = "Moto E3 Power (Black, 16 GB)" },
+                new () { ProductID = 2, SubCategoryID = 2, Quantity = 6, ProductName = "Macbook Pro" },
+                new () { ProductID = 3, SubCategoryID = 3, Quantity = 1, ProductName = "Galaxy Watch 6" }
             });
 
             base.OnModelCreating(modelBuilder);
