@@ -21,7 +21,7 @@ namespace Store.Management.Application.Services
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to include the new User.");
+                throw new Exception(ex.Message);
             }
         }
     }

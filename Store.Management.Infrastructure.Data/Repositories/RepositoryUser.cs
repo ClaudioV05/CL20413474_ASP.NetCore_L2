@@ -34,14 +34,21 @@ namespace Store.Management.Infrastructure.Data.Repositories
 
                 var result = await _userManager.CreateAsync(newUser, user.Password);
 
-                if (result.Succeeded)
+                if (result is not null)
                 {
-                    _signInManager.SignInAsync(newUser, isPersistent: false);
+                    if (result.Succeeded)
+                    {
+                        _signInManager.SignInAsync(newUser, isPersistent: false);
+                    }
+                    else if (result.Errors.Any())
+                    {
+                        throw new Exception(result.Errors.FirstOrDefault().Description);
+                    }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
     }

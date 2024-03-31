@@ -92,7 +92,14 @@ namespace Store.Management.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<User>))]
         public async Task RegisterUser(User user)
         {
-            await _serviceUser.RegisterUser(user);
+            try
+            {
+                await _serviceUser.RegisterUser(user);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

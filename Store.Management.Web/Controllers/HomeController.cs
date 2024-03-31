@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Store.Management.Application.Interfaces;
-using Store.Management.Domain.Entities;
 using Store.Management.Web.Models;
 using Store.Management.Web.ViewModels;
 

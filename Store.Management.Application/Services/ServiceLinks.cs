@@ -188,7 +188,7 @@ namespace Store.Management.Application.Services
 
         #region Store management registration user.
 
-        public User RegisterUser(string uri, User user)
+        public void RegisterUser(string uri, User user)
         {
             try
             {
@@ -205,7 +205,7 @@ namespace Store.Management.Application.Services
 
                     var obj = this.SerializeModel(user);
 
-                    return JsonConvert.DeserializeObject<User>(webClient.UploadString(uri, obj), this._jsonSerializerSettings);
+                    webClient.UploadString(uri, obj);
                 }
             }
             catch (WebException ex)

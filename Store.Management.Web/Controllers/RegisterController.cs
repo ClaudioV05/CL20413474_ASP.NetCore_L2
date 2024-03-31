@@ -39,17 +39,17 @@ namespace Store.Management.Web.Controllers
         {
             try
             {
-                var user = _serviceLinks.RegisterUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameRegistrationUser()}", new User()
-                { 
-                    Email = storeManagementRegisterUser.Email, 
+                _serviceLinks.RegisterUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameRegistrationUser()}", new User()
+                {
+                    Email = storeManagementRegisterUser.Email,
                     Password = storeManagementRegisterUser.Password
                 });
 
-                return View();
+                return RedirectToRoute(new { controller = "Home", action = "Index" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
+                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = ex.Message });
             }
         }
     }
