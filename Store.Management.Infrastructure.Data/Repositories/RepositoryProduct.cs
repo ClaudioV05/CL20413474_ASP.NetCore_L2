@@ -21,6 +21,6 @@ namespace Store.Management.Infrastructure.Data.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Product>> GetTheListOfProduct() => await _context?.Product?.AsNoTracking().ToListAsync();
+        public async Task<IEnumerable<Product>> GetTheListOfProduct() => await _context?.Products?.AsNoTracking().ToListAsync();
     }
 }

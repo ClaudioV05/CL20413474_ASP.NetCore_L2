@@ -25,17 +25,17 @@ namespace Store.Management.Infrastructure.Data.Context
         /// <summary>
         /// Product.
         /// </summary>
-        public DbSet<Product>? Product { get; set; }
+        public DbSet<Product>? Products { get; set; }
 
         /// <summary>
         /// Category.
         /// </summary>
-        public DbSet<Category>? Category { get; set; }
+        public DbSet<Category>? Categories { get; set; }
 
         /// <summary>
         /// SubCategory.
         /// </summary>
-        public DbSet<SubCategory>? SubCategory { get; set; }
+        public DbSet<SubCategory>? SubCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,6 +45,26 @@ namespace Store.Management.Infrastructure.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Category>().HasData(new List<Category>(){new Category()
+            { 
+                CategoryID = 1,
+                CategoryName = "Mobile"
+            }});
+
+            modelBuilder.Entity<SubCategory>().HasData(new List<SubCategory>(){new SubCategory()
+            {
+                SubCategoryID = 1,
+                CategoryID = 1,
+                SubCategoryName = "Motorola"
+            }});
+
+            modelBuilder.Entity<Product>().HasData(new List<Product>(){new Product()
+            { 
+                ProductID = 1,
+                SubCategoryID = 1,
+                ProductName = "Moto E3 Power (Black, 16 GB)"
+            }});
+
             base.OnModelCreating(modelBuilder);
         }
     }

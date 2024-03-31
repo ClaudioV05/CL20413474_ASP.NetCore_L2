@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using Store.Management.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Store.Management.Domain.Entities
 {
@@ -14,13 +13,15 @@ namespace Store.Management.Domain.Entities
         /// CategoryID.
         /// </summary>
         [Key]
-        public int CategoryID { get; set; }
+        [Required]
+        public long CategoryID { get; set; }
 
         /// <summary>
         /// CategoryName.
         /// </summary>
         [StringLength(40)]
         [Column(TypeName = "varchar(40)")]
+        [Required(AllowEmptyStrings = false)]
         public string? CategoryName { get; set; }
     }
 }

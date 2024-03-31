@@ -13,19 +13,21 @@ namespace Store.Management.Domain.Entities
         /// ProductID.
         /// </summary>
         [Key]
-        public int ProductID { get; set; }
+        [Required]
+        public long ProductID { get; set; }
+
+        /// <summary>
+        /// SubCategoryID.
+        /// </summary>
+        [Required]
+        public long SubCategoryID { get; set; }
 
         /// <summary>
         /// ProductName.
         /// </summary>
         [StringLength(40)]
         [Column(TypeName = "varchar(40)")]
-
+        [Required(AllowEmptyStrings = false)]
         public string? ProductName { get; set; }
-
-        /// <summary>
-        /// SubCategoryID.
-        /// </summary>
-        public int SubCategoryID { get; set; }
     }
 }
