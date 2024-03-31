@@ -18,7 +18,15 @@ builder.Services.AddDbContext<DatabaseContext>();
 
 #region Adding the AspNet Core identity.
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DatabaseContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 8;
+    options.Password.RequiredUniqueChars = 3;
+}).AddEntityFrameworkStores<DatabaseContext>();
 
 #endregion Adding the AspNet Core identity.
 
