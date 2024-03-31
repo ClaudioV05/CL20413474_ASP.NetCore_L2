@@ -3,7 +3,7 @@
     var storeManagementRegisterController = "Register/";
     var actionStoreManagementLoginUser = "StoreManagementLoginUser";
     var actionStoreManagementLoginUserIndex = "Index";
-
+ 
     $('#btnRegister').on("click", () => {
         redirectToAnotherWebPage(`${storeManagementRegisterController}${actionStoreManagementLoginUserIndex}`);
     });
@@ -29,6 +29,7 @@
                 data: storeManagementLoginUser,
                 datatype: "JSON",
                 success: (data) => {
+                    showComponent($('#navStoreManagement'));
                     redirectToAnotherWebPage("StoreManagement/Index");
                 },
                 error: (xhr, ajaxOptions, thrownError) => {

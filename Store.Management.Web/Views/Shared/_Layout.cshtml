@@ -31,26 +31,22 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark text-left text-uppercase font-weight-bold h6" asp-controller="Register" asp-action="Index"><label class="navbar-label">Register</label></a>
                         </li>
-                        <li class="nav-item d-none">
+                        <li id="navStoreManagement" class="nav-item">
                             <a class="nav-link text-dark text-left text-uppercase font-weight-bold h6" asp-controller="StoreManagement" asp-action="Index"><label class="navbar-label">Store Management</label></a>
                         </li>
                     </ul>
-                </div>
-                <div class="mode text-right text-uppercase font-weight-bold h6">
-                    Dark mode:
-                    <span class="change">DISABLED</span>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted text-left text-uppercase font-weight-bold">
-        <div class="container">
+    <footer class="border-top footer">
+        <div class="container text-muted text-left text-uppercase font-weight-bold">
             &copy; 2024 - Store Management System
         </div>
     </footer>
