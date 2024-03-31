@@ -22,7 +22,8 @@ namespace Store.Management.Web.Controllers
             _serviceLinks = serviceLinks;
         }
 
-        [HttpGet]
+        [HttpGet()]
+        [ActionName("Index")]
         public IActionResult Index()
         {
             StoreManagementViewModel storeManagementViewModel = new StoreManagementViewModel();
@@ -38,14 +39,16 @@ namespace Store.Management.Web.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet()]
+        [ActionName("GetTheListOfSubCategoryByCategoryId")]
         public JsonResult GetTheListOfSubCategoryByCategoryId(int id)
         {
             var lstSubCategory = _serviceLinks.GetTheListOfSubCategoryByCategoryId($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId()}/{id}");
             return Json(lstSubCategory);
         }
 
-        [HttpGet]
+        [HttpGet()]
+        [ActionName("GetTheListOfProductBySubCategoryId")]
         public JsonResult GetTheListOfProductBySubCategoryId(int id)
         {
             var lstProducts = _serviceLinks.GetTheListOfProductBySubCategoryId($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfProductBySubCategoryId()}/{id}");

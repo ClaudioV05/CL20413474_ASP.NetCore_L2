@@ -10,14 +10,16 @@ namespace Store.Management.Domain.Entities
     [NotMapped]
     public class User
     {
-        [Key]
-        public int UserID { get; set; }
+        /// <summary>
+        /// Email.
+        /// </summary>
+        [Required]
+        public string? Email { get; set; }
 
         /// <summary>
-        /// Name.
+        /// Password.
         /// </summary>
-        [StringLength(40)]
-        [Column(TypeName = "varchar(40)")]
-        public string? Name { get; set; }
+        [Required]
+        public string? Password { get; set; }
     }
 }

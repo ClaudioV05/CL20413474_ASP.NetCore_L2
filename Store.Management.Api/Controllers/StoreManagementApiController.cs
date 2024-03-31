@@ -77,16 +77,16 @@ namespace Store.Management.Api.Controllers
         }
 
         /// <summary>
-        /// Login user
+        /// Register user.
         /// </summary>
-        /// <param name=""></param>
-        /// <returns></returns>
+        /// <param name="user"></param>
+        /// <returns>The new user.</returns>
         [EnableCors]
         [HttpPost()]
-        [Route("LoginUser")]
+        [Route("RegisterUser")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<User>))]
-        public async Task<User> LoginUser(User user)
+        public async Task<User> RegisterUser(User user)
         {
             return null;
         }

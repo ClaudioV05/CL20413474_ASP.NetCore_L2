@@ -6,7 +6,7 @@ namespace Store.Management.Domain.Entities
     /// <summary>
     /// SubCategory.
     /// </summary>
-    [NotMapped]
+    //[NotMapped]
     public class SubCategory
     {
         /// <summary>

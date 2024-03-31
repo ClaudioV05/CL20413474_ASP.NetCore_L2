@@ -154,6 +154,7 @@ namespace Store.Management.Application.Services
         #endregion Store management products.
 
         #region Store management login user.
+
         public User LoginUser(string uri, User user)
         {
             try
@@ -183,9 +184,40 @@ namespace Store.Management.Application.Services
                 throw new Exception($"Erro: {ex.Message}");
             }
         }
+
         #endregion Store management login user.
 
         #region Store management registration user.
+
+        public User RegisterUser(string uri, User user)
+        {
+            try
+            {
+                using (var webClient = new WebClient() { Encoding = Encoding.UTF8 })
+                {
+                    if (string.IsNullOrEmpty(uri))
+                    {
+                        throw new Exception("Route do not informed.");
+                    }
+
+                    webClient.Headers[HttpRequestHeader.ContentType] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Allow] = _MimeTypeDefault;
+                    webClient.Headers[HttpRequestHeader.Accept] = _MimeTypeDefault;
+
+                    var obj = this.SerializeModel(user);
+
+                    return JsonConvert.DeserializeObject<User>(webClient.UploadString(uri, obj), this._jsonSerializerSettings);
+                }
+            }
+            catch (WebException ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro: {ex.Message}");
+            }
+        }
 
         #endregion Store management registration user.
     }

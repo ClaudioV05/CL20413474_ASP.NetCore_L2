@@ -92,6 +92,14 @@ namespace Store.Management.Application.Interfaces
 
         #region Store management registration user.
 
+        /// <summary>
+        /// Register User.
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <param name="user"></param>
+        /// <returns>The new User.</returns>
+        User RegisterUser(string uri, User user);
+
         #endregion Store management registration user.
     }
 }

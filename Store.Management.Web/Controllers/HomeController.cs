@@ -22,6 +22,8 @@ namespace Store.Management.Web.Controllers
             _serviceLinks = serviceLinks;
         }
 
+        [HttpGet()]
+        [ActionName("Index")]
         public IActionResult Index()
         {
             try
@@ -40,7 +42,7 @@ namespace Store.Management.Web.Controllers
         {
             try
             {
-                var user = _serviceLinks.LoginUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameLoginUser()}", new User() { UserID = 1, Name = "Jesus" });
+               // var user = _serviceLinks.LoginUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameLoginUser()}", new User() { UserID = 1, Name = "Jesus" });
 
                 return View();
             }

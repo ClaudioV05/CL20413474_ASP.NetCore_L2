@@ -1,24 +1,56 @@
 using Microsoft.AspNetCore.Mvc;
+using Store.Management.Application.Interfaces;
+using Store.Management.Domain.Entities;
+using Store.Management.Web.Models;
+using Store.Management.Web.ViewModels;
 
 namespace Store.Management.Web.Controllers
 {
     public class RegisterController : Controller
     {
-        public RegisterController()
-        {
+        private readonly IServiceLinks _serviceLinks;
 
+        /// <summary>
+        /// RegisterController.
+        /// </summary>
+        /// <param name="serviceLinks"></param>
+        public RegisterController(IServiceLinks serviceLinks)
+        {
+            _serviceLinks = serviceLinks;
         }
 
-        [ActionName("Register")]
-        public IActionResult Register()
+        [HttpGet()]
+        [ActionName("Index")]
+        public IActionResult Index()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
+            }
         }
 
-        [ActionName("fj.")]
-        public IActionResult Registerr()
+        [HttpPost()]
+        [ActionName("StoreManagementRegisterNewUser")]
+        public IActionResult StoreManagementRegisterNewUser([FromBody] StoreManagementRegisterUser storeManagementRegisterUser)
         {
-            return View();
+            try
+            {
+                var user = _serviceLinks.RegisterUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameRegistrationUser()}", new User()
+                { 
+                    Email = storeManagementRegisterUser.Email, 
+                    Password = storeManagementRegisterUser.Password
+                });
+
+                return View();
+            }
+            catch (Exception)
+            {
+                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
+            }
         }
     }
 }
