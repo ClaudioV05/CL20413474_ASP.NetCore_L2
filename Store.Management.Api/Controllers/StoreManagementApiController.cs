@@ -16,6 +16,7 @@ namespace Store.Management.Api.Controllers
         private readonly IServiceCategory _serviceCategory;
         private readonly IServiceSubCategory _serviceSubCategory;
         private readonly IServiceProduct _serviceProduct;
+        private readonly IServiceUser _serviceUser;
 
         /// <summary>
         /// StoreManagementApiController.
@@ -23,13 +24,16 @@ namespace Store.Management.Api.Controllers
         /// <param name="serviceCategory"></param>
         /// <param name="serviceSubCategory"></param>
         /// <param name="serviceProduct"></param>
+        /// <param name="serviceUser"></param>
         public StoreManagementApiController(IServiceCategory serviceCategory,
                                             IServiceSubCategory serviceSubCategory,
-                                            IServiceProduct serviceProduct)
+                                            IServiceProduct serviceProduct,
+                                            IServiceUser serviceUser)
         {
             _serviceCategory = serviceCategory;
             _serviceSubCategory = serviceSubCategory;
             _serviceProduct = serviceProduct;
+            _serviceUser = serviceUser;
         }
 
         /// <summary>
@@ -77,18 +81,18 @@ namespace Store.Management.Api.Controllers
         }
 
         /// <summary>
-        /// Register user.
+        /// Register a new user through identity.
         /// </summary>
         /// <param name="user"></param>
-        /// <returns>The new user.</returns>
+        /// <returns></returns>
         [EnableCors]
         [HttpPost()]
         [Route("RegisterUser")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<User>))]
-        public async Task<User> RegisterUser(User user)
+        public async Task RegisterUser(User user)
         {
-            return null;
+            await _serviceUser.RegisterUser(user);
         }
     }
 }

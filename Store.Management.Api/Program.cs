@@ -11,27 +11,44 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 #region Adding the context.
+
 builder.Services.AddDbContext<DatabaseContext>();
+
 #endregion Adding the context.
 
 #region Adding the AspNet Core identity.
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<DatabaseContext>();
+
 #endregion Adding the AspNet Core identity.
 
 #region Adding the services to product.
+
 builder.Services.TryAddScoped<IServiceProduct, ServiceProduct>();
 builder.Services.TryAddScoped<IRepositoryProduct, RepositoryProduct>();
+
 #endregion  Adding the services to product.
 
 #region Adding the services to category.
+
 builder.Services.TryAddScoped<IServiceCategory, ServiceCategory>();
 builder.Services.TryAddScoped<IRepositoryCategory, RepositoryCategory>();
+
 #endregion Adding the services to category.
 
 #region Adding the services to sub category.
+
 builder.Services.TryAddScoped<IServiceSubCategory, ServiceSubCategory>();
 builder.Services.TryAddScoped<IRepositorySubCategory, RepositorySubCategory>();
+
 #endregion Adding the services to sub category.
+
+#region Adding the services to user.
+
+builder.Services.TryAddScoped<IServiceUser, ServiceUser>();
+builder.Services.TryAddScoped<IRepositoryUser, RepositoryUser>();
+
+#endregion Adding the services to user.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
