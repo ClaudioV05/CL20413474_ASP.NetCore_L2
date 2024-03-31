@@ -23,17 +23,17 @@ namespace Store.Management.Infrastructure.Data.Context
         }
 
         /// <summary>
-        /// Product.
+        /// Products.
         /// </summary>
         public DbSet<Products>? Products { get; set; }
 
         /// <summary>
-        /// Category.
+        /// Categories.
         /// </summary>
         public DbSet<Categories>? Categories { get; set; }
 
         /// <summary>
-        /// SubCategory.
+        /// SubCategories.
         /// </summary>
         public DbSet<SubCategories>? SubCategories { get; set; }
 
@@ -45,25 +45,26 @@ namespace Store.Management.Infrastructure.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Categories>().HasData(new List<Categories>(){new Categories()
-            { 
-                CategoryID = 1,
-                CategoryName = "Mobile"
-            }});
-
-            modelBuilder.Entity<SubCategories>().HasData(new List<SubCategories>(){new SubCategories()
+            modelBuilder.Entity<Categories>().HasData(new List<Categories>()
             {
-                SubCategoryID = 1,
-                CategoryID = 1,
-                SubCategoryName = "Motorola"
-            }});
+                new () { CategoryID = 1, CategoryName = "Mobile" },
+                new () { CategoryID = 2, CategoryName = "Laptop" },
+                new () { CategoryID = 3, CategoryName = "Smartwatch" }
+            });
 
-            modelBuilder.Entity<Products>().HasData(new List<Products>(){new Products()
-            { 
-                ProductID = 1,
-                SubCategoryID = 1,
-                ProductName = "Moto E3 Power (Black, 16 GB)"
-            }});
+            modelBuilder.Entity<SubCategories>().HasData(new List<SubCategories>()
+            {
+                new () { SubCategoryID = 1, CategoryID = 1, SubCategoryName = "Motorola" },
+                new () { SubCategoryID = 2, CategoryID = 2, SubCategoryName = "Apple" },
+                new () { SubCategoryID = 3, CategoryID = 3, SubCategoryName = "Samsung" }
+            });
+
+            modelBuilder.Entity<Products>().HasData(new List<Products>()
+            {
+                new () { ProductID = 1, SubCategoryID = 1, ProductName = "Moto E3 Power (Black, 16 GB)", Quantity = 4 },
+                new () { ProductID = 2, SubCategoryID = 2, ProductName = "Mackbook Pro", Quantity = 6 },
+                new () { ProductID = 3, SubCategoryID = 3, ProductName = "Galaxy Watch 6", Quantity = 1 }
+            });
 
             base.OnModelCreating(modelBuilder);
         }

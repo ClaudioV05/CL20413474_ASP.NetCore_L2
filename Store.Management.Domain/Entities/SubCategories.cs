@@ -14,18 +14,20 @@ namespace Store.Management.Domain.Entities
         /// </summary>
         [Key]
         [Required]
+        [Column(Order = 0)]
         public long SubCategoryID { get; set; }
 
         /// <summary>
         /// CategoryID.
         /// </summary>
+        [Column(Order = 1)]
         public long CategoryID { get; set; }
 
         /// <summary>
         /// SubCategoryName.
         /// </summary>
         [StringLength(40)]
-        [Column(TypeName = "varchar(40)")]
+        [Column(TypeName = "varchar(40)", Order = 2)]
         [Required(AllowEmptyStrings = false)]
         public string? SubCategoryName { get; set; }
     }
