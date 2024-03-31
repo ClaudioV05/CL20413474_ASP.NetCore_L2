@@ -27,25 +27,25 @@ namespace Store.Management.Web.ViewModels
         public string? SubCategory { get; set; }
 
         /// <summary>
-        /// List of the Product.
+        /// List of the Products.
         /// </summary>
-        public List<SelectListItem>? ListProduct { get; set; }
+        public List<SelectListItem>? ListProducts { get; set; }
 
         /// <summary>
-        /// List of the Category.
+        /// List of the Categories.
         /// </summary>
-        public List<SelectListItem>? ListCategory { get; set; }
+        public List<SelectListItem>? ListCategories { get; set; }
 
         /// <summary>
-        /// List of the SubCategory.
+        /// List of the SubCategories.
         /// </summary>
-        public List<SelectListItem>? ListSubCategory { get; set; }
+        public List<SelectListItem>? ListSubCategories { get; set; }
 
         public StoreManagementViewModel()
         {
-            this.ListProduct = new List<SelectListItem>();
-            this.ListCategory = new List<SelectListItem>();
-            this.ListSubCategory = new List<SelectListItem>();
+            this.ListProducts = new List<SelectListItem>();
+            this.ListCategories = new List<SelectListItem>();
+            this.ListSubCategories = new List<SelectListItem>();
         }
     }
 }

@@ -8,23 +8,23 @@
             <div class="form-row mt-3">
                 <div class="col-4 mt-4">
                     @Html.LabelFor(m => m.Category, new { @class = "store-management-label-global" })
-                    @if (Model.ListCategory is not null && Model.ListCategory.Any())
+                    @if (Model.ListCategories is not null && Model.ListCategories.Any())
                     {
-                        @Html.DropDownList("CategoryName", (IEnumerable<SelectListItem>)Model.ListCategory, new { id = "dpdCategoryName", @class = "form-control form-select-lg", required = "false" })
+                        @Html.DropDownList("CategoryName", (IEnumerable<SelectListItem>)Model.ListCategories, new { id = "dpdCategoryName", @class = "form-control form-select-lg", required = "false" })
                     }
                 </div>
                 <div class="col-4 mt-4">
                     @Html.LabelFor(m => m.SubCategory, new { @class = "store-management-label-global" })
-                    @if (Model.ListSubCategory is not null && Model.ListSubCategory.Any())
+                    @if (Model.ListSubCategories is not null && Model.ListSubCategories.Any())
                     {
-                        @Html.DropDownList("SubCategoryName", (IEnumerable<SelectListItem>)Model.ListSubCategory, new { id = "dpdSubCategoryName", @class = "form-control form-select-lg", required = "false" })
+                        @Html.DropDownList("SubCategoryName", (IEnumerable<SelectListItem>)Model.ListSubCategories, new { id = "dpdSubCategoryName", @class = "form-control form-select-lg", required = "false" })
                     }
                 </div>
                 <div class="col-4 mt-4">
                     @Html.LabelFor(m => m.Product, new { @class = "store-management-label-global" })
-                    @if (Model.ListProduct is not null && Model.ListProduct.Any())
+                    @if (Model.ListProducts is not null && Model.ListProducts.Any())
                     {
-                        @Html.DropDownList("ProductName", (IEnumerable<SelectListItem>)Model.ListProduct, new { id = "dpdProduct", @class = "form-control form-select-lg", required = "false" })
+                        @Html.DropDownList("ProductName", (IEnumerable<SelectListItem>)Model.ListProducts, new { id = "dpdProduct", @class = "form-control form-select-lg", required = "false" })
                     }
                 </div>
             </div>

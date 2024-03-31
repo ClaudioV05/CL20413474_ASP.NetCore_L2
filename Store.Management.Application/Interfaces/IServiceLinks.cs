@@ -25,7 +25,7 @@ namespace Store.Management.Application.Interfaces
         /// Return the store management action name get the list of category.
         /// </summary>
         /// <returns></returns>
-        string? ReturnStoreManagementActionNameGetTheListOfCategory();
+        string? ReturnStoreManagementActionNameGetTheListOfCategories();
 
         /// <summary>
         /// Return the store management action name get the list of sub category by category id.

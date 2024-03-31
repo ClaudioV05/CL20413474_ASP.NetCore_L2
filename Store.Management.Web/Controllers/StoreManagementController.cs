@@ -63,24 +63,24 @@ namespace Store.Management.Web.Controllers
         /// <param name="storeManagementViewModel"></param>
         private void InitializeViewStoreManagement(ref StoreManagementViewModel storeManagementViewModel)
         {
-            var lstCategory = _serviceLinks.GetTheListOfCategories($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+            var lstCategories = _serviceLinks.GetTheListOfCategories($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategories()}");
 
             if (storeManagementViewModel is not null)
             {
                 // Initializer the list of Category.
-                storeManagementViewModel?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
+                storeManagementViewModel?.ListCategories?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
 
                 // Initializer the list of the SubCategory.
-                storeManagementViewModel?.ListSubCategory?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
+                storeManagementViewModel?.ListSubCategories?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
 
                 // Initializer the list of the Product.
-                storeManagementViewModel?.ListProduct?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
+                storeManagementViewModel?.ListProducts?.Add(new SelectListItem() { Value = Convert.ToString(0), Text = "Select", Selected = true });
 
-                if (lstCategory is not null && lstCategory.Any())
+                if (lstCategories is not null && lstCategories.Any())
                 {
-                    for (int i = 0; i < lstCategory.Count; i++)
+                    for (int i = 0; i < lstCategories.Count; i++)
                     {
-                        storeManagementViewModel?.ListCategory?.Add(new SelectListItem() { Value = Convert.ToString(lstCategory[i]?.CategoryID), Text = lstCategory[i]?.CategoryName?.ToString(), Selected = false });
+                        storeManagementViewModel?.ListCategories?.Add(new SelectListItem() { Value = Convert.ToString(lstCategories[i]?.CategoryID), Text = lstCategories[i]?.CategoryName?.ToString(), Selected = false });
                     }
                 }
             }

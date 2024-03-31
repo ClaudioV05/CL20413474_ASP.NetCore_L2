@@ -50,7 +50,7 @@ namespace Store.Management.Application.Services
 
         public string? ReturnStoreManagementNameController() => _configuration["StoreManagementApi:ControllerNameProduct"];
 
-        public string? ReturnStoreManagementActionNameGetTheListOfCategory() => _configuration["StoreManagementApi:ActionNameGetTheListOfCategory"];
+        public string? ReturnStoreManagementActionNameGetTheListOfCategories() => _configuration["StoreManagementApi:ActionNameGetTheListOfCategories"];
 
         public string? ReturnStoreManagementActionNameGetTheListOfSubCategoryByCategoryId() => _configuration["StoreManagementApi:ActionNameGetTheListOfSubCategoryByCategoryId"];
 

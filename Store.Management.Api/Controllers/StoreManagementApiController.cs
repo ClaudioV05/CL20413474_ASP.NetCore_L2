@@ -42,10 +42,10 @@ namespace Store.Management.Api.Controllers
         /// <returns></returns>
         [EnableCors]
         [HttpGet()]
-        [Route("GetTheListOfCategory")]
+        [Route("GetTheListOfCategories")]
         [Produces(MediaTypeNames.Application.Json, MediaTypeNames.Application.Xml)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Categories>>))]
-        public async Task<IEnumerable<Categories>> GetTheListOfCategory()
+        public async Task<IEnumerable<Categories>> GetTheListOfCategories()
         {
             return await _serviceCategories.GetTheListOfCategories();
         }
