@@ -4,20 +4,20 @@ using Store.Management.Domain.Interfaces;
 
 namespace Store.Management.Application.Services
 {
-    public class ServiceUser : IServiceUser
+    public class ServiceUsers : IServiceUsers
     {
-        private readonly IRepositoryUser _repositoryUser;
+        private readonly IRepositoryUsers _repositoryUsers;
 
-        public ServiceUser(IRepositoryUser repositoryUser)
+        public ServiceUsers(IRepositoryUsers repositoryUsers)
         {
-            _repositoryUser = repositoryUser;
+            _repositoryUsers = repositoryUsers;
         }
 
         public async Task RegisterUser(User user)
         {
             try
             {
-                await _repositoryUser.RegisterUser(user);
+                await _repositoryUsers.RegisterUser(user);
             }
             catch (Exception ex)
             {

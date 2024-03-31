@@ -4,20 +4,20 @@ using Store.Management.Domain.Interfaces;
 
 namespace Store.Management.Application.Services
 {
-    public class ServiceSubCategory : IServiceSubCategory
+    public class ServiceSubCategories : IServiceSubCategories
     {
-        private readonly IRepositorySubCategory _repositorySubCategory;
+        private readonly IRepositorySubCategories _repositorySubCategories;
 
-        public ServiceSubCategory(IRepositorySubCategory repositorySubCategory)
+        public ServiceSubCategories(IRepositorySubCategories repositorySubCategories)
         {
-            _repositorySubCategory = repositorySubCategory;
+            _repositorySubCategories = repositorySubCategories;
         }
 
-        public async Task<IEnumerable<SubCategories>> GetListOfSubCategory()
+        public async Task<IEnumerable<SubCategories>> GetListOfSubCategories()
         {
             try
             {
-                var listItems = await _repositorySubCategory.GetListOfSubCategory();
+                var listItems = await _repositorySubCategories.GetListOfSubCategories();
 
                 return (from subCategory
                         in listItems
@@ -34,7 +34,7 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listItems = await _repositorySubCategory.GetListOfSubCategory();
+                var listItems = await _repositorySubCategories.GetListOfSubCategories();
 
                 return (from subCategory
                         in listItems

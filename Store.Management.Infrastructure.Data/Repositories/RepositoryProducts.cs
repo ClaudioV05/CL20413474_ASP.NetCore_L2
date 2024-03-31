@@ -6,21 +6,21 @@ using Store.Management.Infrastructure.Data.Context;
 namespace Store.Management.Infrastructure.Data.Repositories
 {
     /// <summary>
-    /// RepositoryProduct.
+    /// RepositoryProducts.
     /// </summary>
-    public class RepositoryProduct : IRepositoryProduct
+    public class RepositoryProducts : IRepositoryProducts
     {
         private readonly DatabaseContext _context;
 
         /// <summary>
-        /// RepositoryProduct.
+        /// RepositoryProducts.
         /// </summary>
         /// <param name="context"></param>
-        public RepositoryProduct(DatabaseContext context)
+        public RepositoryProducts(DatabaseContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Products>> GetTheListOfProduct() => await _context?.Products?.AsNoTracking().ToListAsync();
+        public async Task<IEnumerable<Products>> GetTheListOfProducts() => await _context?.Products?.AsNoTracking().ToListAsync();
     }
 }

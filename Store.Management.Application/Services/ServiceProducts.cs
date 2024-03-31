@@ -4,20 +4,20 @@ using Store.Management.Domain.Interfaces;
 
 namespace Store.Management.Application.Services
 {
-    public class ServiceProduct : IServiceProduct
+    public class ServiceProducts : IServiceProducts
     {
-        private readonly IRepositoryProduct _repositoryProduct;
+        private readonly IRepositoryProducts _repositoryProducts;
 
-        public ServiceProduct(IRepositoryProduct repositoryProduct)
+        public ServiceProducts(IRepositoryProducts repositoryProducts)
         {
-            _repositoryProduct = repositoryProduct;
+            _repositoryProducts = repositoryProducts;
         }
 
-        public async Task<IEnumerable<Products>> GetTheListOfProduct()
+        public async Task<IEnumerable<Products>> GetTheListOfProducts()
         {
             try
             {
-                var listItems = await _repositoryProduct.GetTheListOfProduct();
+                var listItems = await _repositoryProducts.GetTheListOfProducts();
 
                 return (from product
                         in listItems
@@ -34,7 +34,7 @@ namespace Store.Management.Application.Services
         {
             try
             {
-                var listItems = await _repositoryProduct.GetTheListOfProduct();
+                var listItems = await _repositoryProducts.GetTheListOfProducts();
 
                 return (from product
                         in listItems

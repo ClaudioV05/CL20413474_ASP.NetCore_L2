@@ -13,10 +13,10 @@ namespace Store.Management.Api.Controllers
     [Route("[controller]")]
     public class StoreManagementApiController : ControllerBase
     {
-        private readonly IServiceCategory _serviceCategory;
-        private readonly IServiceSubCategory _serviceSubCategory;
-        private readonly IServiceProduct _serviceProduct;
-        private readonly IServiceUser _serviceUser;
+        private readonly IServiceCategories _serviceCategory;
+        private readonly IServiceSubCategories _serviceSubCategory;
+        private readonly IServiceProducts _serviceProduct;
+        private readonly IServiceUsers _serviceUser;
 
         /// <summary>
         /// StoreManagementApiController.
@@ -25,10 +25,10 @@ namespace Store.Management.Api.Controllers
         /// <param name="serviceSubCategory"></param>
         /// <param name="serviceProduct"></param>
         /// <param name="serviceUser"></param>
-        public StoreManagementApiController(IServiceCategory serviceCategory,
-                                            IServiceSubCategory serviceSubCategory,
-                                            IServiceProduct serviceProduct,
-                                            IServiceUser serviceUser)
+        public StoreManagementApiController(IServiceCategories serviceCategory,
+                                            IServiceSubCategories serviceSubCategory,
+                                            IServiceProducts serviceProduct,
+                                            IServiceUsers serviceUser)
         {
             _serviceCategory = serviceCategory;
             _serviceSubCategory = serviceSubCategory;
@@ -47,7 +47,7 @@ namespace Store.Management.Api.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Task<IEnumerable<Categories>>))]
         public async Task<IEnumerable<Categories>> GetTheListOfCategory()
         {
-            return await _serviceCategory.GetTheListOfCategory();
+            return await _serviceCategory.GetTheListOfCategories();
         }
 
         /// <summary>

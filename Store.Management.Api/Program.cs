@@ -32,29 +32,29 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 
 #region Adding the services to product.
 
-builder.Services.TryAddScoped<IServiceProduct, ServiceProduct>();
-builder.Services.TryAddScoped<IRepositoryProduct, RepositoryProduct>();
+builder.Services.TryAddScoped<IServiceProducts, ServiceProducts>();
+builder.Services.TryAddScoped<IRepositoryProducts, RepositoryProducts>();
 
 #endregion  Adding the services to product.
 
 #region Adding the services to category.
 
-builder.Services.TryAddScoped<IServiceCategory, ServiceCategory>();
-builder.Services.TryAddScoped<IRepositoryCategory, RepositoryCategory>();
+builder.Services.TryAddScoped<IServiceCategories, ServiceCategories>();
+builder.Services.TryAddScoped<IRepositoryCategories, RepositoryCategories>();
 
 #endregion Adding the services to category.
 
 #region Adding the services to sub category.
 
-builder.Services.TryAddScoped<IServiceSubCategory, ServiceSubCategory>();
-builder.Services.TryAddScoped<IRepositorySubCategory, RepositorySubCategory>();
+builder.Services.TryAddScoped<IServiceSubCategories, ServiceSubCategories>();
+builder.Services.TryAddScoped<IRepositorySubCategories, RepositorySubCategories>();
 
 #endregion Adding the services to sub category.
 
 #region Adding the services to user.
 
-builder.Services.TryAddScoped<IServiceUser, ServiceUser>();
-builder.Services.TryAddScoped<IRepositoryUser, RepositoryUser>();
+builder.Services.TryAddScoped<IServiceUsers, ServiceUsers>();
+builder.Services.TryAddScoped<IRepositoryUsers, RepositoryUsers>();
 
 #endregion Adding the services to user.
 

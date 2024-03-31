@@ -3,15 +3,15 @@
 namespace Store.Management.Application.Interfaces
 {
     /// <summary>
-    /// Interface IServiceSubCategory.
+    /// Interface IServiceSubCategories.
     /// </summary>
-    public interface IServiceSubCategory
+    public interface IServiceSubCategories
     {
         /// <summary>
-        /// To obtain list of sub category.
+        /// To obtain list of sub categories.
         /// </summary>
-        /// <returns>The list of sub category.</returns>
-       Task<IEnumerable<SubCategories>> GetListOfSubCategory();
+        /// <returns>The list of sub categories.</returns>
+        Task<IEnumerable<SubCategories>> GetListOfSubCategories();
 
         /// <summary>
         /// To obtain the list of category by sub category id.

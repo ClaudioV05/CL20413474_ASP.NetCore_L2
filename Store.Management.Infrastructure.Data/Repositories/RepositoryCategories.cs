@@ -6,21 +6,21 @@ using Store.Management.Infrastructure.Data.Context;
 namespace Store.Management.Infrastructure.Data.Repositories
 {
     /// <summary>
-    /// RepositorySubCategory.
+    /// RepositoryCategories.
     /// </summary>
-    public class RepositorySubCategory : IRepositorySubCategory
+    public class RepositoryCategories : IRepositoryCategories
     {
         private readonly DatabaseContext _context;
 
         /// <summary>
-        /// RepositoryCategory.
+        /// RepositoryCategories.
         /// </summary>
         /// <param name="context"></param>
-        public RepositorySubCategory(DatabaseContext context)
+        public RepositoryCategories(DatabaseContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<SubCategories>> GetListOfSubCategory() => await _context?.SubCategories?.AsNoTracking().ToListAsync();
+        public async Task<IEnumerable<Categories>> GetTheListOfCategories() => await _context?.Categories?.AsNoTracking().ToListAsync();
     }
 }

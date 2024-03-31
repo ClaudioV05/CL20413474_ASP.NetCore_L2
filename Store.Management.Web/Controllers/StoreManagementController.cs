@@ -63,7 +63,7 @@ namespace Store.Management.Web.Controllers
         /// <param name="storeManagementViewModel"></param>
         private void InitializeViewStoreManagement(ref StoreManagementViewModel storeManagementViewModel)
         {
-            var lstCategory = _serviceLinks.GetTheListOfCategory($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
+            var lstCategory = _serviceLinks.GetTheListOfCategories($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameGetTheListOfCategory()}");
 
             if (storeManagementViewModel is not null)
             {

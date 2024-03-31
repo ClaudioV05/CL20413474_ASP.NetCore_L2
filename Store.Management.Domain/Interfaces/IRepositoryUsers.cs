@@ -5,7 +5,7 @@ namespace Store.Management.Domain.Interfaces
     /// <summary>
     /// Interface IRepositoryUser
     /// </summary>
-    public interface IRepositoryUser
+    public interface IRepositoryUsers
     {
         /// <summary>
         /// Register a new user through identity.

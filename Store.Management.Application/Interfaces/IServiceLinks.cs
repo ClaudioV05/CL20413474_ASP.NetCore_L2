@@ -56,11 +56,11 @@ namespace Store.Management.Application.Interfaces
         #region Store management products.
 
         /// <summary>
-        /// To obtain the list of object category.
+        /// To obtain the list of object categories.
         /// </summary>
         /// <param name="uri"></param>
-        /// <returns>The list from object category</returns>
-        List<Categories> GetTheListOfCategory(string uri);
+        /// <returns>The list from object categories</returns>
+        List<Categories> GetTheListOfCategories(string uri);
 
         /// <summary>
         /// To obtain the list of object sub category.

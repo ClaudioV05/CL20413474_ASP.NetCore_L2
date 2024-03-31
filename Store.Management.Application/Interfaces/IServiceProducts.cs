@@ -3,15 +3,15 @@
 namespace Store.Management.Application.Interfaces
 {
     /// <summary>
-    /// Interface IServiceProduct.
+    /// Interface IServiceProducts.
     /// </summary>
-    public interface IServiceProduct
+    public interface IServiceProducts
     {
         /// <summary>
-        /// To obtain the list of product.
+        /// To obtain the list of products.
         /// </summary>
-        /// <returns>The list of product.</returns>
-        Task<IEnumerable<Products>> GetTheListOfProduct();
+        /// <returns>The list of products.</returns>
+        Task<IEnumerable<Products>> GetTheListOfProducts();
 
         /// <summary>
         /// To obtain the list of product by sub category id.

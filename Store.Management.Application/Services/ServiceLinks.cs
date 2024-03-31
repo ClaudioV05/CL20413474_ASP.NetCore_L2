@@ -66,7 +66,7 @@ namespace Store.Management.Application.Services
 
         #region Store management products.
 
-        public List<Categories> GetTheListOfCategory(string uri)
+        public List<Categories> GetTheListOfCategories(string uri)
         {
             try
             {

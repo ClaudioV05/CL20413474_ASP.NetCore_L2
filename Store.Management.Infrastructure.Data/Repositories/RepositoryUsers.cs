@@ -5,18 +5,18 @@ using Store.Management.Domain.Interfaces;
 namespace Store.Management.Infrastructure.Data.Repositories
 {
     /// <summary>
-    /// RepositoryUser.
+    /// RepositoryUsers.
     /// </summary>
-    public class RepositoryUser : IRepositoryUser
+    public class RepositoryUsers : IRepositoryUsers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
         /// <summary>
-        /// RepositoryUser.
+        /// RepositoryUsers.
         /// </summary>
         /// <param name=""></param>
-        public RepositoryUser(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public RepositoryUsers(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

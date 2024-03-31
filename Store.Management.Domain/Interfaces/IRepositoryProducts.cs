@@ -5,12 +5,12 @@ namespace Store.Management.Domain.Interfaces
     /// <summary>
     /// Interface IRepositoryProduct
     /// </summary>
-    public interface IRepositoryProduct
+    public interface IRepositoryProducts
     {
         /// <summary>
-        /// To obtain the list of product.
+        /// To obtain the list of products.
         /// </summary>
-        /// <returns>The list of product.</returns>
-        Task<IEnumerable<Products>> GetTheListOfProduct();
+        /// <returns>The list of products.</returns>
+        Task<IEnumerable<Products>> GetTheListOfProducts();
     }
 }

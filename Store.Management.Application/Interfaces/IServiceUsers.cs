@@ -5,7 +5,7 @@ namespace Store.Management.Application.Interfaces
     /// <summary>
     /// Interface IServiceUser.
     /// </summary>
-    public interface IServiceUser
+    public interface IServiceUsers
     {
         /// <summary>
         /// Register a new user through identity.
