@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Store.Management.Domain.Entities;
 using Store.Management.Domain.Interfaces;
-using Store.Management.Infrastructure.Data.Context;
 
 namespace Store.Management.Infrastructure.Data.Repositories
 {
@@ -26,17 +24,24 @@ namespace Store.Management.Infrastructure.Data.Repositories
 
         public async Task RegisterUser(User user)
         {
-            var newUser = new IdentityUser()
+            try
             {
-                UserName = user.Email,
-                Email = user.Email
-            };
+                var newUser = new IdentityUser()
+                {
+                    UserName = user.Email,
+                    Email = user.Email
+                };
 
-            var result = await _userManager.CreateAsync(newUser, user.Password);
+                var result = await _userManager.CreateAsync(newUser, user.Password);
 
-            if (result.Succeeded) 
+                if (result.Succeeded)
+                {
+                    _signInManager.SignInAsync(newUser, isPersistent: false);
+                }
+            }
+            catch (Exception)
             {
-                _signInManager.SignInAsync(newUser, isPersistent: false);
+                throw new Exception();
             }
         }
     }
