@@ -4,9 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>12.0</LangVersion>
     <NoWarn>$(NoWarn);SYSLIB0021</NoWarn>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors> <!--The options control how the compiler reports errors and warnings.-->
-    <InvariantGlobalization>false</InvariantGlobalization> <!--Determines whether a .NET Core app runs in globalization-invariant mode without access to culture-specific data and behavior.-->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>
