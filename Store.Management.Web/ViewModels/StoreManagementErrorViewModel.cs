@@ -1,13 +1,12 @@
-namespace Store.Management.Web.Models
+namespace Store.Management.Web.Models;
+
+/// <summary>
+///View Model - Store management error.
+/// </summary>
+public class StoreManagementErrorViewModel
 {
     /// <summary>
-    ///View Model - Store management error.
+    /// Message.
     /// </summary>
-    public class StoreManagementErrorViewModel
-    {
-        /// <summary>
-        /// Message.
-        /// </summary>
-        public string? Message { get; set; }
-    }
+    public string? Message { get; set; }
 }

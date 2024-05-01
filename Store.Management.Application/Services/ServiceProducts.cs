@@ -2,50 +2,49 @@
 using Store.Management.Domain.Entities;
 using Store.Management.Domain.Interfaces;
 
-namespace Store.Management.Application.Services
+namespace Store.Management.Application.Services;
+
+public class ServiceProducts : IServiceProducts
 {
-    public class ServiceProducts : IServiceProducts
+    private readonly IRepositoryProducts _repositoryProducts;
+
+    public ServiceProducts(IRepositoryProducts repositoryProducts)
     {
-        private readonly IRepositoryProducts _repositoryProducts;
+        _repositoryProducts = repositoryProducts;
+    }
 
-        public ServiceProducts(IRepositoryProducts repositoryProducts)
+    public async Task<IEnumerable<Products>> GetTheListOfProducts()
+    {
+        try
         {
-            _repositoryProducts = repositoryProducts;
+            var listItems = await _repositoryProducts.GetTheListOfProducts();
+
+            return (from product
+                    in listItems
+                    where product.ProductID > 0
+                    select product).ToList();
         }
-
-        public async Task<IEnumerable<Products>> GetTheListOfProducts()
+        catch (Exception)
         {
-            try
-            {
-                var listItems = await _repositoryProducts.GetTheListOfProducts();
-
-                return (from product
-                        in listItems
-                        where product.ProductID > 0
-                        select product).ToList();
-            }
-            catch (Exception)
-            {
-                return Enumerable.Empty<Products>();
-            }
+            return Enumerable.Empty<Products>();
         }
+    }
 
-        public async Task<IEnumerable<Products>> GetTheListOfProductBySubCategoryId(int id)
+    public async Task<IEnumerable<Products>> GetTheListOfProductBySubCategoryId(int id)
+    {
+        try
         {
-            try
-            {
-                var listItems = await _repositoryProducts.GetTheListOfProducts();
+            var listItems = await _repositoryProducts.GetTheListOfProducts();
 
-                return (from product
-                        in listItems
-                        where product.ProductID > 0
-                        && product.SubCategoryID.Equals(id)
-                        select product).ToList();
-            }
-            catch (Exception)
-            {
-                return Enumerable.Empty<Products>();
-            }
+            return (from product
+                    in listItems
+                    where product.ProductID > 0
+                    && product.SubCategoryID.Equals(id)
+                    select product).ToList();
+        }
+        catch (Exception)
+        {
+            return Enumerable.Empty<Products>();
         }
     }
 }

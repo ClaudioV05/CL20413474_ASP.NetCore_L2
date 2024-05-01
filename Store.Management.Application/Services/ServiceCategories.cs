@@ -2,32 +2,31 @@
 using Store.Management.Domain.Entities;
 using Store.Management.Domain.Interfaces;
 
-namespace Store.Management.Application.Services
+namespace Store.Management.Application.Services;
+
+public class ServiceCategories : IServiceCategories
 {
-    public class ServiceCategories : IServiceCategories
+    private readonly IRepositoryCategories _repositoryCategories;
+
+    public ServiceCategories(IRepositoryCategories repositoryCategories)
     {
-        private readonly IRepositoryCategories _repositoryCategories;
+        _repositoryCategories = repositoryCategories;
+    }
 
-        public ServiceCategories(IRepositoryCategories repositoryCategories)
+    public async Task<IEnumerable<Categories>> GetTheListOfCategories()
+    {
+        try
         {
-            _repositoryCategories = repositoryCategories;
+            var listItems = await _repositoryCategories.GetTheListOfCategories();
+
+            return (from category
+                    in listItems
+                    where category.CategoryID > 0
+                    select category).ToList();
         }
-
-        public async Task<IEnumerable<Categories>> GetTheListOfCategories()
+        catch (Exception)
         {
-            try
-            {
-                var listItems = await _repositoryCategories.GetTheListOfCategories();
-
-                return (from category
-                        in listItems
-                        where category.CategoryID > 0
-                        select category).ToList();
-            }
-            catch (Exception)
-            {
-                return Enumerable.Empty<Categories>();
-            }
+            return Enumerable.Empty<Categories>();
         }
     }
 }

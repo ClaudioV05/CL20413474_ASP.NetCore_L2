@@ -2,50 +2,49 @@
 using Store.Management.Domain.Entities;
 using Store.Management.Domain.Interfaces;
 
-namespace Store.Management.Application.Services
+namespace Store.Management.Application.Services;
+
+public class ServiceSubCategories : IServiceSubCategories
 {
-    public class ServiceSubCategories : IServiceSubCategories
+    private readonly IRepositorySubCategories _repositorySubCategories;
+
+    public ServiceSubCategories(IRepositorySubCategories repositorySubCategories)
     {
-        private readonly IRepositorySubCategories _repositorySubCategories;
+        _repositorySubCategories = repositorySubCategories;
+    }
 
-        public ServiceSubCategories(IRepositorySubCategories repositorySubCategories)
+    public async Task<IEnumerable<SubCategories>> GetListOfSubCategories()
+    {
+        try
         {
-            _repositorySubCategories = repositorySubCategories;
+            var listItems = await _repositorySubCategories.GetListOfSubCategories();
+
+            return (from subCategory
+                    in listItems
+                    where subCategory.CategoryID > 0
+                    select subCategory).ToList();
         }
-
-        public async Task<IEnumerable<SubCategories>> GetListOfSubCategories()
+        catch (Exception)
         {
-            try
-            {
-                var listItems = await _repositorySubCategories.GetListOfSubCategories();
-
-                return (from subCategory
-                        in listItems
-                        where subCategory.CategoryID > 0
-                        select subCategory).ToList();
-            }
-            catch (Exception)
-            {
-                return Enumerable.Empty<SubCategories>();
-            }
+            return Enumerable.Empty<SubCategories>();
         }
+    }
 
-        public async Task<IEnumerable<SubCategories>> GetTheListOfSubCategoryByCategoryId(int id)
+    public async Task<IEnumerable<SubCategories>> GetTheListOfSubCategoryByCategoryId(int id)
+    {
+        try
         {
-            try
-            {
-                var listItems = await _repositorySubCategories.GetListOfSubCategories();
+            var listItems = await _repositorySubCategories.GetListOfSubCategories();
 
-                return (from subCategory
-                        in listItems
-                        where subCategory.CategoryID > 0
-                        && subCategory.CategoryID.Equals(id)
-                        select subCategory).ToList();
-            }
-            catch (Exception)
-            {
-                return Enumerable.Empty<SubCategories>();
-            }
+            return (from subCategory
+                    in listItems
+                    where subCategory.CategoryID > 0
+                    && subCategory.CategoryID.Equals(id)
+                    select subCategory).ToList();
+        }
+        catch (Exception)
+        {
+            return Enumerable.Empty<SubCategories>();
         }
     }
 }

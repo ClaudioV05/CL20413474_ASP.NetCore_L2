@@ -1,24 +1,23 @@
 ﻿using Store.Management.Domain.Entities;
 
-namespace Store.Management.Domain.Interfaces
+namespace Store.Management.Domain.Interfaces;
+
+/// <summary>
+/// Interface IRepositoryUser
+/// </summary>
+public interface IRepositoryUsers
 {
     /// <summary>
-    /// Interface IRepositoryUser
+    /// Register a new user through identity.
     /// </summary>
-    public interface IRepositoryUsers
-    {
-        /// <summary>
-        /// Register a new user through identity.
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        Task RegisterUser(User user);
+    /// <param name="user"></param>
+    /// <returns></returns>
+    Task RegisterUser(User user);
 
-        /// <summary>
-        /// Login user.
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        Task LoginUser(User user);
-    }
+    /// <summary>
+    /// Login user.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    Task LoginUser(User user);
 }

@@ -4,56 +4,55 @@ using Store.Management.Domain.Entities;
 using Store.Management.Web.Models;
 using Store.Management.Web.ViewModels;
 
-namespace Store.Management.Web.Controllers
+namespace Store.Management.Web.Controllers;
+
+/// <summary>
+/// HomeController.
+/// </summary>
+public class HomeController : Controller
 {
+    private readonly IServiceLinks _serviceLinks;
+
     /// <summary>
     /// HomeController.
     /// </summary>
-    public class HomeController : Controller
+    /// <param name="serviceLinks"></param>
+    public HomeController(IServiceLinks serviceLinks)
     {
-        private readonly IServiceLinks _serviceLinks;
+        _serviceLinks = serviceLinks;
+    }
 
-        /// <summary>
-        /// HomeController.
-        /// </summary>
-        /// <param name="serviceLinks"></param>
-        public HomeController(IServiceLinks serviceLinks)
+    [HttpGet()]
+    [ActionName("Index")]
+    public IActionResult Index()
+    {
+        try
         {
-            _serviceLinks = serviceLinks;
+            return View();
         }
-
-        [HttpGet()]
-        [ActionName("Index")]
-        public IActionResult Index()
+        catch (Exception)
         {
-            try
-            {
-                return View();
-            }
-            catch (Exception)
-            {
-                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
-            }
+            return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
         }
+    }
 
-        [HttpPost()]
-        [ActionName("StoreManagementLoginUser")]
-        public IActionResult StoreManagementLoginUser([FromBody] StoreManagementLoginUserViewModel storeManagementLoginUserViewModel)
+    [HttpPost()]
+    [ActionName("StoreManagementLoginUser")]
+    public IActionResult StoreManagementLoginUser([FromBody] StoreManagementLoginUserViewModel storeManagementLoginUserViewModel)
+    {
+        try
         {
-            try
-            {
-               _serviceLinks.LoginUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameLoginUser()}", new User()
-               {
-                   Email = storeManagementLoginUserViewModel.Email, 
-                   Password = storeManagementLoginUserViewModel.Password
-               });
+           _serviceLinks.LoginUser($"{_serviceLinks.ReturnStoreManagementUriApi()}{_serviceLinks.ReturnStoreManagementNameController()}{_serviceLinks.ReturnStoreManagementActionNameLoginUser()}", new User()
+           {
+               Email = storeManagementLoginUserViewModel.Email, 
+               Password = storeManagementLoginUserViewModel.Password
+           });
 
-                return RedirectToRoute(new { controller = "StoreManagement", action = "Index" });
-            }
-            catch (Exception)
-            {
-                return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
-            }
+            return RedirectToRoute(new { controller = "StoreManagement", action = "Index" });
+        }
+        catch (Exception)
+        {
+            return View("~/Views/Shared/_Error.cshtml", new StoreManagementErrorViewModel() { Message = "The page don't was show." });
         }
     }
 }

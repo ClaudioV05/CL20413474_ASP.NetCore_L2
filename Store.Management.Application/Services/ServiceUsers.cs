@@ -2,39 +2,38 @@
 using Store.Management.Domain.Entities;
 using Store.Management.Domain.Interfaces;
 
-namespace Store.Management.Application.Services
+namespace Store.Management.Application.Services;
+
+public class ServiceUsers : IServiceUsers
 {
-    public class ServiceUsers : IServiceUsers
+    private readonly IRepositoryUsers _repositoryUsers;
+
+    public ServiceUsers(IRepositoryUsers repositoryUsers)
     {
-        private readonly IRepositoryUsers _repositoryUsers;
+        _repositoryUsers = repositoryUsers;
+    }
 
-        public ServiceUsers(IRepositoryUsers repositoryUsers)
+    public async Task RegisterUser(User user)
+    {
+        try
         {
-            _repositoryUsers = repositoryUsers;
+            await _repositoryUsers.RegisterUser(user);
         }
-
-        public async Task RegisterUser(User user)
+        catch (Exception ex)
         {
-            try
-            {
-                await _repositoryUsers.RegisterUser(user);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            throw new Exception(ex.Message);
         }
+    }
 
-        public async Task LoginUser(User user)
+    public async Task LoginUser(User user)
+    {
+        try
         {
-            try
-            {
-                await _repositoryUsers.LoginUser(user);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            await _repositoryUsers.LoginUser(user);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
         }
     }
 }
